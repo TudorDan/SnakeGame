@@ -1,11 +1,15 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -39,16 +43,26 @@ public class Game extends Pane {
         Globals.getInstance().startGame();
     }
 
+    public void restart() {
+        Globals.getInstance().stopGame();
+
+        //delete everything
+        getChildren().removeIf(child -> child instanceof GameEntity);
+
+        init();
+        start();
+    }
+
     private void spawnSnake() {
         snake = new Snake(new Point2D(500, 500));
     }
 
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for (int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+        for (int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
     private void setupInputHandling() {
