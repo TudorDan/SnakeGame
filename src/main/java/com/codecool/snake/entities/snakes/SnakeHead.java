@@ -7,6 +7,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.Food;
 
+import com.codecool.snake.entities.powerups.Life;
 import javafx.geometry.Point2D;
 
 
@@ -42,7 +43,12 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof Enemy){
             System.out.println(getMessage());
             snake.changeHealth(((Enemy) entity).getDamage());
+//            Check for low life
+            if (snake.getHealth() < 30) {
+                new Life();
+            }
         }
+
         if(entity instanceof Food){
             System.out.println(getMessage());
             snake.addPart(1);
@@ -50,6 +56,11 @@ public class SnakeHead extends GameEntity implements Interactable {
             new Food();
 //            Update score
             snake.changeScore(1);
+        }
+
+        if (entity instanceof Life){
+//            Restore snake life to 100%
+            snake.restoreHealth();
         }
     }
 

@@ -85,4 +85,8 @@ public class Snake implements Animatable {
     }
 
     public int getScore() { return this.score; }
+
+    public void restoreHealth() {this.health = 100;}
+
+    public int getHealth() {return this.health;}
 }

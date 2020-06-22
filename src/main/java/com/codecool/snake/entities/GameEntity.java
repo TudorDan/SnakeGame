@@ -5,6 +5,8 @@ import com.codecool.snake.Globals;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 
+import java.util.Random;
+
 // The base class for every game entity.
 public abstract class GameEntity extends ImageView {
 
@@ -31,5 +33,11 @@ public abstract class GameEntity extends ImageView {
             return true;
         }
         return false;
+    }
+
+    public void spawn() {
+        Random rnd = new Random();
+        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
     }
 }
