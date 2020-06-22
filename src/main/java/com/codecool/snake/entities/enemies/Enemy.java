@@ -12,4 +12,8 @@ public abstract class Enemy extends GameEntity{
     public int getDamage() {
         return damage;
     }
+
+    public void clearAll() {
+
+    }
 }

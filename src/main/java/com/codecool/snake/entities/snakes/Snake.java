@@ -11,7 +11,7 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private int speed;
     private int health = 100;
     private int score;
 
@@ -26,6 +26,7 @@ public class Snake implements Animatable {
         addPart(4);
 
         this.score = 0;
+        this.speed = 2;
     }
 
     public void step() {
@@ -89,4 +90,8 @@ public class Snake implements Animatable {
     public void restoreHealth() {this.health = 100;}
 
     public int getHealth() {return this.health;}
+
+    public void changeSpeed(int diff) { this.speed += diff; }
+
+    public int getSpeed() {return this.speed;}
 }

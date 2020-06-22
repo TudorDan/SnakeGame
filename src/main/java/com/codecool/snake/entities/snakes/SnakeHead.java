@@ -8,7 +8,15 @@ import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.Food;
 
 import com.codecool.snake.entities.powerups.Life;
+import com.codecool.snake.entities.powerups.PowerBoom;
+import com.codecool.snake.entities.powerups.SpeedPotion;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.util.Duration;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class SnakeHead extends GameEntity implements Interactable {
@@ -40,17 +48,19 @@ public class SnakeHead extends GameEntity implements Interactable {
 
     @Override
     public void apply(GameEntity entity) {
+        System.out.println(this.getMessage());
+
         if(entity instanceof Enemy){
-            System.out.println(getMessage());
+//            Decrease snake health with a value equal to the damage produced by the enemy
             snake.changeHealth(((Enemy) entity).getDamage());
-//            Check for low life
+//            Check for low life and spawn Potion if health is below 30
             if (snake.getHealth() < 30) {
-                new Life();
+                new Life(10);
             }
         }
 
         if(entity instanceof Food){
-            System.out.println(getMessage());
+//            Increase snake size
             snake.addPart(1);
 //            Spawn new food after eating
             new Food();
@@ -62,10 +72,29 @@ public class SnakeHead extends GameEntity implements Interactable {
 //            Restore snake life to 100%
             snake.restoreHealth();
         }
+
+        if (entity instanceof SpeedPotion) {
+//            Double the snake default speed
+            snake.changeSpeed(2);
+            AtomicInteger spawnedTimer = new AtomicInteger();
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                spawnedTimer.addAndGet(1);
+                if (spawnedTimer.intValue() == 10) {
+                    snake.changeSpeed(-1);
+                }
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+
+        }
+
+        if (entity instanceof PowerBoom) {
+
+        }
     }
 
     @Override
     public String getMessage() {
-        return "IMMA SNAEK HED! SPITTIN' MAH WENOM! SPITJU-SPITJU!";
+        return "Snake head collision with game entity";
     }
 }

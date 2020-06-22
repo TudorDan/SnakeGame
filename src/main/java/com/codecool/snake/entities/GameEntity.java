@@ -2,10 +2,15 @@ package com.codecool.snake.entities;
 
 import com.codecool.snake.Globals;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // The base class for every game entity.
 public abstract class GameEntity extends ImageView {
@@ -39,5 +44,18 @@ public abstract class GameEntity extends ImageView {
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+    }
+
+    public void spawn(int spawnDuration) {
+        spawn();
+        AtomicInteger spawnedTimer = new AtomicInteger();
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            spawnedTimer.addAndGet(1);
+            if (spawnedTimer.intValue() == spawnDuration) {
+                this.destroy();
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 }

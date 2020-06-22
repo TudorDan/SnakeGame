@@ -2,17 +2,32 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.Food;
+import com.codecool.snake.entities.powerups.PowerBoom;
+import com.codecool.snake.entities.powerups.SpeedPotion;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
+    AtomicInteger timer = new AtomicInteger();
+
+    private static final int speedPotionSpawnDuration = 10;
+    private static final int lifeSpawnDuration = 7;
+    private static final int goldChestSpawnDuration = 15;
+    private static final int fireBallSpawnDuration = 8;
+    private static final int powerBoomSpawnDuration = 5;
 
 
     public Game() {
@@ -27,6 +42,7 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnFood();
+        setupSpawningTimer();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -55,5 +71,22 @@ public class Game extends Pane {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> InputHandler.getInstance().setKeyPressed(event.getCode()));
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
+    }
+
+//    This function count the seconds in the game and stores the value into "timer" variable.
+//    Based on "timer", we decide what game entities to spawn.
+    private void setupSpawningTimer() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            timer.addAndGet(1);
+
+//            Spawn once SpeedPotion per 25 seconds
+            if (timer.intValue() % 25 == 0) {
+                new SpeedPotion(speedPotionSpawnDuration);
+            } else if (timer.intValue() % 40 == 0) {
+                new PowerBoom(powerBoomSpawnDuration);
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 }

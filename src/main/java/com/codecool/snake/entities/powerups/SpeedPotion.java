@@ -5,10 +5,12 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 
-public class Life extends GameEntity implements Interactable {
+public class SpeedPotion extends GameEntity implements Interactable {
 
-    public Life(int spawnDuration) {
-        setImage(Globals.getInstance().getImage("Life"));
+
+    public SpeedPotion(int spawnDuration) {
+        super();
+        setImage(Globals.getInstance().getImage("Potion"));
         spawn(spawnDuration);
     }
 
@@ -22,6 +24,6 @@ public class Life extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Life restored!";
+        return "Speed increased!";
     }
 }
