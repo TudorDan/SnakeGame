@@ -7,10 +7,10 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
 
-public class SimplePowerUp extends GameEntity implements Interactable {
+public class Food extends GameEntity implements Interactable {
     private static Random rnd = new Random();
 
-    public SimplePowerUp() {
+    public Food() {
         setImage(Globals.getInstance().getImage("PowerUpBerry"));
 
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
@@ -27,6 +27,6 @@ public class SimplePowerUp extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "Got power-up :)";
+        return "YUMMY!:)";
     }
 }
