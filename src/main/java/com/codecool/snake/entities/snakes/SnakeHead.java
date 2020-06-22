@@ -1,21 +1,20 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
-import com.codecool.snake.entities.powerups.Food;
+import com.codecool.snake.entities.powerups.*;
 
-import com.codecool.snake.entities.powerups.Life;
-import com.codecool.snake.entities.powerups.PowerBoom;
-import com.codecool.snake.entities.powerups.SpeedPotion;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -53,7 +52,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof Enemy){
 //            Decrease snake health with a value equal to the damage produced by the enemy
             snake.changeHealth(((Enemy) entity).getDamage());
-//            Check for low life and spawn Potion if health is below 30
+//            Spawn life if health is below 30
             if (snake.getHealth() < 30) {
                 new Life(10);
             }
@@ -76,6 +75,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (entity instanceof SpeedPotion) {
 //            Double the snake default speed
             snake.changeSpeed(2);
+//            The effect lasts for 10 seconds
             AtomicInteger spawnedTimer = new AtomicInteger();
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
                 spawnedTimer.addAndGet(1);
@@ -88,8 +88,17 @@ public class SnakeHead extends GameEntity implements Interactable {
 
         }
 
-        if (entity instanceof PowerBoom) {
+        if (entity instanceof GoldChest) {
+//            Add 100 points to snake score
+            snake.changeScore(100);
+        }
 
+        if (entity instanceof FireBall) {
+//            TODO
+        }
+
+        if (entity instanceof PowerBoom) {
+//            TODO
         }
     }
 

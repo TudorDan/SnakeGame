@@ -46,6 +46,7 @@ public abstract class GameEntity extends ImageView {
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
     }
 
+//    Overloading the default function to achieve creating a game entity with a limited life time
     public void spawn(int spawnDuration) {
         spawn();
         AtomicInteger spawnedTimer = new AtomicInteger();

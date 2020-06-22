@@ -25,8 +25,4 @@ public class PowerBoom extends GameEntity implements Interactable {
     public String getMessage() {
         return "POWER BOOM!!!";
     }
-
-    public void clearAllEnemies() {
-
-    }
 }
