@@ -7,7 +7,7 @@ This is a snake game with full 360 degree rotation.
 
 ** Inside IntelliJ Idea
 
-   Open the projact as a Maven project. (by opening the =pom.xml=)
+   Open the project as a Maven project. (by opening the =pom.xml=)
 
    Run it from the maven sidebar by running the =javafx:run= target
 
