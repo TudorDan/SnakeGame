@@ -2,6 +2,9 @@ package com.codecool.snake;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,6 +21,28 @@ public class Main extends Application {
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);
         primaryStage.show();
+
+        // create menu bar and set its width
+        MenuBar menuBar = new MenuBar();
+        menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+
+        // create game menu
+        Menu menuGame = new Menu("Game");
+
+        // create restart option
+        MenuItem restart = new MenuItem("Restart");
+        restart.setOnAction(e -> {
+            game.restartGame();//to do
+        });
+
+        // add restart option to game menu
+        menuGame.getItems().add(restart);
+
+        // add game menu to bar menu
+        menuBar.getMenus().add(menuGame);
+
+        // add menu bar to stage
+        game.getChildren().add(menuBar);
 
         game.start();
     }
