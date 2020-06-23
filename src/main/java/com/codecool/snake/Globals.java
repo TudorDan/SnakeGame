@@ -38,6 +38,8 @@ public class Globals {
         resources.addImage("PowerBoom", new Image("power-boom.png"));
         resources.addImage("FireBall", new Image("ball-of-fire.png"));
         resources.addImage("Life", new Image("heart.png"));
+        resources.addImage("Bird", new Image("greenBird.png"));
+        resources.addImage("Spaceship", new Image("spaceship3.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }

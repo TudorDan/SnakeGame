@@ -3,7 +3,9 @@ package com.codecool.snake;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.ThirdEnemy;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -47,6 +49,8 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(4);
+        spawnSecondEnemies(2);
+        spawnThirdEnemies(3);
         spawnFood();
         setupSpawningTimer();
 
@@ -84,6 +88,14 @@ public class Game extends Pane {
         for (int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
     }
 
+    private void spawnSecondEnemies(int numberOfSecondEnemies) {
+        for (int i = 0; i < numberOfSecondEnemies; ++i) new SecondEnemy();
+    }
+
+    private void spawnThirdEnemies(int numberOfThirdEnemies) {
+        for (int i = 0; i < numberOfThirdEnemies; ++i) new ThirdEnemy();
+    }
+
     private void spawnFood() {
         new Food();
     }
@@ -99,10 +111,15 @@ public class Game extends Pane {
     private void setupSpawningTimer() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
+
+            System.out.println(gameLoop.isRunning());
             if (gameLoop.isRunning()) {
+
                 //Spawn one SpeedPotion per 25 seconds
                 if (timer.intValue() % 25 == 0) {
+                    System.out.println("inainte de SPPot");
                     new SpeedPotion(speedPotionSpawnDuration);
+                    System.out.println("dupa SPPot");
                 //Spawn one PowerBoom per 40 seconds
                 } else if (timer.intValue() % 40 == 0) {
                     new PowerBoom(powerBoomSpawnDuration);
@@ -114,7 +131,10 @@ public class Game extends Pane {
 
                 if (timer.intValue() % 10 == 0) {
                     spawnEnemies(4);
+                } else if (timer.intValue() % 2 == 0) {
+                    spawnSecondEnemies(2);
                 }
+
             } else {
                 gameLoop.stop();
             }
