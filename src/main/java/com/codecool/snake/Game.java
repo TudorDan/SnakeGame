@@ -8,8 +8,8 @@ import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -41,6 +41,11 @@ public class Game extends Pane {
     public void start() {
         setupInputHandling();
         Globals.getInstance().startGame();
+    }
+
+    void exit() {
+        Platform.exit();
+        System.exit(0);
     }
 
     public void restart() {

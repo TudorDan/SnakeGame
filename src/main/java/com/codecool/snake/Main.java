@@ -32,11 +32,18 @@ public class Main extends Application {
         // create restart option
         MenuItem restart = new MenuItem("Restart");
         restart.setOnAction(e -> {
-            game.restart();//to do
+            game.restart();
         });
 
-        // add restart option to game menu
+        // create exit option
+        MenuItem exit = new MenuItem("Exit");
+        exit.setOnAction(e -> {
+            game.exit();
+        });
+
+        // add options to game menu
         menuGame.getItems().add(restart);
+        menuGame.getItems().add(exit);
 
         // add game menu to bar menu
         menuBar.getMenus().add(menuGame);
