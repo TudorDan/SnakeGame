@@ -25,7 +25,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
-//    Shady type of integer idk what this is but normal int won't work so who cares
+
+    private GameLoop gameLoop = new GameLoop(snake);
+    //    Shady type of integer idk what this is but normal int won't work so who cares
     AtomicInteger timer = new AtomicInteger();
 
     private static final int speedPotionSpawnDuration = 10;
@@ -92,26 +94,29 @@ public class Game extends Pane {
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
 
-//    This function counts the seconds in the game and stores the value into the "timer" variable.
+    //    This function counts the seconds in the game and stores the value into the "timer" variable.
 //    Based on "timer", we decide what game entities to spawn.
     private void setupSpawningTimer() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
+            if (gameLoop.isRunning()) {
+                //Spawn one SpeedPotion per 25 seconds
+                if (timer.intValue() % 25 == 0) {
+                    new SpeedPotion(speedPotionSpawnDuration);
+                //Spawn one PowerBoom per 40 seconds
+                } else if (timer.intValue() % 40 == 0) {
+                    new PowerBoom(powerBoomSpawnDuration);
+                } else if (timer.intValue() % 100 == 0) {
+                    new GoldChest(goldChestSpawnDuration);
+                } else if (timer.intValue() % 50 == 0) {
+                    new FireBall(fireBallSpawnDuration);
+                }
 
-//            Spawn one SpeedPotion per 25 seconds
-            if (timer.intValue() % 25 == 0) {
-                new SpeedPotion(speedPotionSpawnDuration);
-//            Spawn one PowerBoom per 40 seconds
-            } else if (timer.intValue() % 40 == 0) {
-                new PowerBoom(powerBoomSpawnDuration);
-            } else if (timer.intValue() % 100 == 0) {
-                new GoldChest(goldChestSpawnDuration);
-            } else if (timer.intValue() % 50 == 0) {
-                new FireBall(fireBallSpawnDuration);
-            }
-
-            if (timer.intValue() % 10 == 0) {
-                spawnEnemies(4);
+                if (timer.intValue() % 10 == 0) {
+                    spawnEnemies(4);
+                }
+            } else {
+                gameLoop.stop();
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -122,5 +127,9 @@ public class Game extends Pane {
         setBackground(new Background(new BackgroundImage(tableBackground,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 }

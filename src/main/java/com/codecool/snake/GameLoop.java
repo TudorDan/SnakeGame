@@ -3,15 +3,21 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
 
 public class GameLoop {
     private Snake snake;
+    private Enemy enemy;
     private boolean running = false;
 
-    public GameLoop(Snake snake) { this.snake = snake; }
+    public GameLoop(Snake snake) { this.snake = snake;}
+
+    public boolean isRunning() {
+        return running;
+    }
 
     public void start() {
         running = true;
@@ -19,6 +25,10 @@ public class GameLoop {
 
     public void stop() {
         running = false;
+//        System.out.println("CEVA!!!!!!!!!!!!!!");
+////        enemy.clearAll();
+//        Globals.getInstance().display.clear();
+//        System.out.println("CEVA!!!!!!!!!!!!!!22222222222222");
     }
 
     public void step() {
