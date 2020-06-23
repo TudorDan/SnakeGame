@@ -13,10 +13,17 @@ import javafx.application.Platform;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -32,7 +39,6 @@ public class Game extends Pane {
     private static final int goldChestSpawnDuration = 15;
     private static final int fireBallSpawnDuration = 8;
     private static final int powerBoomSpawnDuration = 5;
-
 
     public Game() {
         Globals.getInstance().game = this;
