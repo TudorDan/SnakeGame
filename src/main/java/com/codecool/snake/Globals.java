@@ -8,8 +8,8 @@ import javafx.scene.layout.Pane;
 public class Globals {
     private static Globals instance = null;
 
-    public static final double WINDOW_WIDTH = 1000;
-    public static final double WINDOW_HEIGHT = 700;
+    public static final double WINDOW_WIDTH = 1400;
+    public static final double WINDOW_HEIGHT = 800;
 
     public Display display;
     public Game game;
@@ -29,10 +29,15 @@ public class Globals {
 
     public void setupResources() {
         resources = new Resources();
-        resources.addImage("SnakeHead", new Image("snake_head.png"));
-        resources.addImage("SnakeBody", new Image("snake_body.png"));
+        resources.addImage("SnakeHead", new Image("dragon-head.png"));
+        resources.addImage("SnakeBody", new Image("dragon-body.png"));
         resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
-        resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
+        resources.addImage("Food", new Image("sheep.png"));
+        resources.addImage("Potion", new Image("potion.png"));
+        resources.addImage("GoldChest", new Image("gold-chest.png"));
+        resources.addImage("PowerBoom", new Image("power-boom.png"));
+        resources.addImage("FireBall", new Image("ball-of-fire.png"));
+        resources.addImage("Life", new Image("heart.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }

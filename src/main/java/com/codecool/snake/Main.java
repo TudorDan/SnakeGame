@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -17,6 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game game = new Game();
         Scene mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+        game.setTableBackground(new Image("/background.jpg"));
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);

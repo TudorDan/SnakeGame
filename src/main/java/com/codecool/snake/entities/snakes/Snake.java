@@ -11,8 +11,9 @@ import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private int speed;
     private int health = 100;
+    private int score;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -23,6 +24,9 @@ public class Snake implements Animatable {
         body = new DelayedModificationList<>();
 
         addPart(4);
+
+        this.score = 0;
+        this.speed = 2;
     }
 
     public void step() {
@@ -57,6 +61,8 @@ public class Snake implements Animatable {
         health += diff;
     }
 
+    public void changeScore(int diff) { score += diff; }
+
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
@@ -78,4 +84,14 @@ public class Snake implements Animatable {
         if(result != null) return result;
         return head;
     }
+
+    public int getScore() { return this.score; }
+
+    public void restoreHealth() {this.health = 100;}
+
+    public int getHealth() {return this.health;}
+
+    public void changeSpeed(int diff) { this.speed += diff; }
+
+    public int getSpeed() {return this.speed;}
 }
