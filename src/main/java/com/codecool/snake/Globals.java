@@ -34,6 +34,10 @@ public class Globals {
         return instance;
     }
 
+    public GameLoop getGameLoop() {
+        return gameLoop;
+    }
+
     public void setGameLoop(GameLoop gameLoop) {
         this.gameLoop = gameLoop;
     }
