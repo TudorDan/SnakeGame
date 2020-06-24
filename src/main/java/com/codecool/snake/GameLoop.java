@@ -5,7 +5,11 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.snakes.Snake;
+import com.codecool.snake.entities.snakes.SnakeBody;
+import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.geometry.Point2D;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameLoop {
@@ -13,7 +17,19 @@ public class GameLoop {
     private Enemy enemy;
     private boolean running = false;
 
-    public GameLoop(Snake snake) { this.snake = snake;}
+    public GameLoop(Snake snake) {
+        this.snake = snake;
+    }
+
+    public List<Point2D> SnakePos() {
+        Point2D head = snake.getHead().getPosition();
+        Point2D body = (Point2D) snake.getBody().getList();
+        List<Point2D> headBody = new ArrayList<>();
+        headBody.add(head);
+        headBody.add(body);
+
+        return headBody;
+    }
 
     public boolean isRunning() {
         return running;
@@ -32,7 +48,7 @@ public class GameLoop {
     }
 
     public void step() {
-        if(running) {
+        if (running) {
             snake.step();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
@@ -52,8 +68,8 @@ public class GameLoop {
             if (objToCheck instanceof Interactable) {
                 for (int otherObjIdx = idxToCheck + 1; otherObjIdx < gameObjs.size(); ++otherObjIdx) {
                     GameEntity otherObj = gameObjs.get(otherObjIdx);
-                    if (otherObj instanceof Interactable){
-                        if(objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())){
+                    if (otherObj instanceof Interactable) {
+                        if (objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())) {
                             ((Interactable) objToCheck).apply(otherObj);
                             ((Interactable) otherObj).apply(objToCheck);
                         }

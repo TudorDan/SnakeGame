@@ -27,6 +27,10 @@ public class Globals {
         this.gameLoop = gameLoop;
     }
 
+    public GameLoop getGameLoop() {
+        return gameLoop;
+    }
+
     public void setupResources() {
         resources = new Resources();
         resources.addImage("SnakeHead", new Image("dragon-head.png"));

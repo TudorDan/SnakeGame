@@ -29,6 +29,14 @@ public class Snake implements Animatable {
         this.speed = 2;
     }
 
+    public SnakeHead getHead() {
+        return head;
+    }
+
+    public DelayedModificationList<GameEntity> getBody() {
+        return body;
+    }
+
     public void step() {
         SnakeControl turnDir = getUserInput();
         head.updateRotation(turnDir, speed);
