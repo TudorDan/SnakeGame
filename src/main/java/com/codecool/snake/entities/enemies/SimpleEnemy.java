@@ -7,6 +7,9 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javafx.geometry.Point2D;
@@ -21,7 +24,9 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     public SimpleEnemy() {
         super(10);
 
+//        List<Point2D> headBody = Globals.getInstance().getGameLoop().SnakePos();
 
+//        System.out.println(headBody);
 
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);

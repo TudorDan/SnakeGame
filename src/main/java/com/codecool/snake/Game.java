@@ -49,8 +49,6 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(4);
-        spawnSecondEnemies(2);
-        spawnThirdEnemies(3);
         spawnFood();
         setupSpawningTimer();
 
@@ -112,32 +110,32 @@ public class Game extends Pane {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
 
-            System.out.println(gameLoop.isRunning());
-            if (gameLoop.isRunning()) {
 
-                //Spawn one SpeedPotion per 25 seconds
-                if (timer.intValue() % 25 == 0) {
-                    System.out.println("inainte de SPPot");
-                    new SpeedPotion(speedPotionSpawnDuration);
-                    System.out.println("dupa SPPot");
+            //Spawn one SpeedPotion per 25 seconds
+            if (timer.intValue() % 25 == 0) {
+                System.out.println("inainte de SPPot");
+                new SpeedPotion(speedPotionSpawnDuration);
+                System.out.println("dupa SPPot");
                 //Spawn one PowerBoom per 40 seconds
-                } else if (timer.intValue() % 40 == 0) {
-                    new PowerBoom(powerBoomSpawnDuration);
-                } else if (timer.intValue() % 100 == 0) {
-                    new GoldChest(goldChestSpawnDuration);
-                } else if (timer.intValue() % 50 == 0) {
-                    new FireBall(fireBallSpawnDuration);
-                }
-
-                if (timer.intValue() % 10 == 0) {
-                    spawnEnemies(4);
-                } else if (timer.intValue() % 2 == 0) {
-                    spawnSecondEnemies(2);
-                }
-
-            } else {
-                gameLoop.stop();
+            } else if (timer.intValue() % 40 == 0) {
+                new PowerBoom(powerBoomSpawnDuration);
+            } else if (timer.intValue() % 100 == 0) {
+                new GoldChest(goldChestSpawnDuration);
+            } else if (timer.intValue() % 50 == 0) {
+                new FireBall(fireBallSpawnDuration);
             }
+
+            if (timer.intValue() % 10 == 0) {
+                if (Globals.getInstance().getGameLoop().checkSpawnCollisions()) {
+                    spawnEnemies(4);
+                }
+            } else if (timer.intValue() % 30 == 0) {
+                spawnSecondEnemies(3);
+            }
+            if (timer.intValue() % 40 == 0) {
+                spawnThirdEnemies(3);
+            }
+
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

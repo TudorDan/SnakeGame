@@ -78,4 +78,24 @@ public class GameLoop {
             }
         }
     }
+
+    public boolean checkSpawnCollisions() {
+        List<GameEntity> gameObjs = Globals.getInstance().display.getObjectList();
+        for (int idxToCheck = 0; idxToCheck < gameObjs.size(); ++idxToCheck) {
+            GameEntity objToCheck = gameObjs.get(idxToCheck);
+            if (objToCheck instanceof Interactable) {
+                for (int otherObjIdx = idxToCheck + 1; otherObjIdx < gameObjs.size(); ++otherObjIdx) {
+                    GameEntity otherObj = gameObjs.get(otherObjIdx);
+                    if (otherObj instanceof Interactable) {
+                        if (objToCheck.getBoundsInParent().intersects(otherObj.getBoundsInParent())) {
+                            ((Interactable) objToCheck).apply(otherObj);
+                            ((Interactable) otherObj).apply(objToCheck);
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
