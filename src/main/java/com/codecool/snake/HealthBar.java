@@ -9,9 +9,9 @@ public class HealthBar extends GameEntity {
     private Snake snake;
 
     public HealthBar() {
-            setImage(Globals.getInstance().getImage("Health100"));
-            setX(50);
-            setY(50);
+        setImage(Globals.getInstance().getImage("Health100"));
+        setX(10);
+        setY(30);
     }
 
     public void changeHealthBar() {

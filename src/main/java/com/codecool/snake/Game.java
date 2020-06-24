@@ -154,8 +154,6 @@ public class Game extends Pane {
                     clearEnemies();
                 }
             }
-
-
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
