@@ -57,7 +57,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(4);
+        spawnEnemies(2);
         spawnFood();
         setupSpawningTimer();
 
@@ -130,24 +130,24 @@ public class Game extends Pane {
                     new PowerBoom(powerBoomSpawnDuration);
                 }
                 // Spawn one GoldChest per 100 seconds
-                if (timer.intValue() % 100 == 0) {
+                if (timer.intValue() % 35 == 0) {
                     new GoldChest(goldChestSpawnDuration);
                 }
                 // Spawn one FireBall per 50 seconds
-                if (timer.intValue() % 50 == 0) {
+                if (timer.intValue() % 30 == 0) {
                     new FireBall(fireBallSpawnDuration);
                 }
-                // Spawn 4 Enemies per 10 seconds
-                if (timer.intValue() % 10 == 0) {
+                // Spawn 2 Enemies per 10 seconds
+                if (timer.intValue() % 7 == 0) {
                     if (Globals.getInstance().getGameLoop().checkSpawnCollisions()) {
-                        spawnEnemies(4);
+                        spawnEnemies(3);
                     }
                 }
-                if (timer.intValue() % 30 == 0) {
-                    spawnSecondEnemies(3);
+                if (timer.intValue() % 15 == 0) {
+                    spawnSecondEnemies(2);
                 }
                 if (timer.intValue() % 20 == 0) {
-                    spawnThirdEnemies(2);
+                    spawnThirdEnemies(1);
                 }
 //                Destroy all enemies if PowerBoom is active
                 if (powerBoom) {

@@ -24,7 +24,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     public SimpleEnemy() {
         super(-10);
 
-//        List<Point2D> headBody = Globals.getInstance().getGameLoop().SnakePos();
+        //List<Point2D> headBody = Globals.getInstance().getGameLoop().SnakePos();
 
 //        System.out.println(headBody);
 
