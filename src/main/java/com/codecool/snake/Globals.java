@@ -44,8 +44,8 @@ public class Globals {
 
     public void setupResources() {
         resources = new Resources();
-        resources.addImage("SnakeHead", new Image("dragon-head.png"));
-        resources.addImage("SnakeBody", new Image("dragon-body.png"));
+        resources.addImage("SnakeHead", new Image("snake_head_ice.png"));
+        resources.addImage("SnakeBody", new Image("snake_body_ice.png"));
         resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
         resources.addImage("Food", new Image("sheep.png"));
         resources.addImage("Potion", new Image("potion.png"));
@@ -53,6 +53,17 @@ public class Globals {
         resources.addImage("PowerBoom", new Image("power-boom.png"));
         resources.addImage("FireBall", new Image("ball-of-fire.png"));
         resources.addImage("Life", new Image("heart.png"));
+        resources.addImage("Health100", new Image("healthfull.png"));
+        resources.addImage("Health90", new Image("health90.png"));
+        resources.addImage("Health80", new Image("health80.png"));
+        resources.addImage("Health70", new Image("health70.png"));
+        resources.addImage("Health60", new Image("health60.png"));
+        resources.addImage("Health50", new Image("health50.png"));
+        resources.addImage("Health40", new Image("health40.png"));
+        resources.addImage("Health30", new Image("health30.png"));
+        resources.addImage("Health20", new Image("health20.png"));
+        resources.addImage("Health10", new Image("health10.png"));
+        resources.addImage("Health0", new Image("health0.png"));
     }
 
     public Image getImage(String name) { return resources.getImage(name); }

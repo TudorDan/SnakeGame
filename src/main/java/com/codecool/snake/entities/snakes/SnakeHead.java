@@ -52,6 +52,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         if(entity instanceof Enemy){
 //            Decrease snake health with a value equal to the damage produced by the enemy
             snake.changeHealth(((Enemy) entity).getDamage());
+            snake.getHealthBar().changeHealthBar();
 //            Spawn life if health is below 30
             if (snake.getHealth() < 30) {
                 new Life(10);
