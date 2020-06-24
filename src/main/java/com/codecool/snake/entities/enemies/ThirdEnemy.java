@@ -15,6 +15,10 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
 
+    private double direction;
+    private final int speed;
+    private int temp;
+
     public ThirdEnemy() {
         super(-20);
 
@@ -22,15 +26,25 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = Globals.WINDOW_HEIGHT;
+        direction = Globals.WINDOW_HEIGHT;
         setRotate(direction);
 
-        int speed = 4;
-        heading = Utils.directionToVector(direction, speed);
+        speed = 3;
+
+        temp = 1;
     }
 
     @Override
     public void step() {
+        if(temp < 100) {
+            temp++;
+        } else {
+            temp = 1;
+            direction = rnd.nextDouble() * 360;
+        }
+
+        heading = Utils.directionToVector(direction, speed);
+
         if (isOutOfBounds()) {
             destroy();
         }

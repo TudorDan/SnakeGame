@@ -146,8 +146,8 @@ public class Game extends Pane {
                 if (timer.intValue() % 30 == 0) {
                     spawnSecondEnemies(3);
                 }
-                if (timer.intValue() % 40 == 0) {
-                    spawnThirdEnemies(3);
+                if (timer.intValue() % 20 == 0) {
+                    spawnThirdEnemies(2);
                 }
 //                Destroy all enemies if PowerBoom is active
                 if (powerBoom) {

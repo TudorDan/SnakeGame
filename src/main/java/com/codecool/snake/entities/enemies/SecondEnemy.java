@@ -17,7 +17,7 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
     private static Random rnd = new Random();
 
     private double direction;
-    private int speed;
+    private final int speed;
 
     public SecondEnemy() {
         super(-20);
