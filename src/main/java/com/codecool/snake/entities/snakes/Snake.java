@@ -7,6 +7,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 import com.codecool.snake.HealthBar;
 
+import com.codecool.snake.resources.GameInfoBox;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
@@ -72,7 +73,10 @@ public class Snake implements Animatable {
         healthBar.changeHealth(diff);
     }
 
-    public void changeScore(int diff) { score += diff; }
+    public void changeScore(int diff) {
+        score += diff;
+        GameInfoBox.changeTitleSnake1("BLUE DRAGON: " + this.getScore());
+    }
 
 
     private void checkForGameOverConditions() {

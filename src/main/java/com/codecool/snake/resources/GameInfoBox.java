@@ -12,9 +12,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class GameInfoBox {
-    VBox gameInfoBox;
-    VBox snake1InfoBox;
-    VBox snake2InfoBox;
+    static VBox gameInfoBox;
+    static VBox snake1InfoBox;
+    static VBox snake2InfoBox;
+    static Text titleSnake1;
+    static Text titleSnake2;
 
     public GameInfoBox(Game game) {
         createSnake1InfoBox();
@@ -40,7 +42,7 @@ public class GameInfoBox {
         snake1InfoBox.setPadding(new Insets(10));
         snake1InfoBox.setSpacing(8);
 
-        Text titleSnake1 = new Text("BLUE DRAGON: 0");
+        titleSnake1 = new Text("BLUE DRAGON: 0");
         titleSnake1.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 18));
         titleSnake1.setFill(Color.TURQUOISE);
 
@@ -52,10 +54,18 @@ public class GameInfoBox {
         snake2InfoBox.setPadding(new Insets(10));
         snake2InfoBox.setSpacing(8);
 
-        Text titleSnake2 = new Text("RED DRAGON: 0");
+        titleSnake2 = new Text("RED DRAGON: 0");
         titleSnake2.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 18));
         titleSnake2.setFill(Color.INDIANRED);
 
         snake2InfoBox.getChildren().add(titleSnake2);
+    }
+
+    public static void changeTitleSnake1(String newTitle) {
+        titleSnake1.setText(newTitle);
+    }
+
+    public void changeTitleSnake2(String newTitle) {
+        titleSnake2.setText(newTitle);
     }
 }

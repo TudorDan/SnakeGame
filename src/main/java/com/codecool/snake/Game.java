@@ -39,6 +39,7 @@ public class Game extends Pane {
 
     //    Shady type of integer idk what this is but normal int won't work so who cares
     AtomicInteger timer = new AtomicInteger();
+    Timeline timeline;
     public static boolean powerBoom = false;
     public static boolean speedPotion = false;
 
@@ -79,6 +80,8 @@ public class Game extends Pane {
 
     public void restart() {
         Globals.getInstance().stopGame();
+        timeline.stop();
+        snake.changeScore(0);
 
         //delete everything
         getChildren().removeIf(child -> child instanceof GameEntity);
@@ -116,7 +119,7 @@ public class Game extends Pane {
     //    This function counts the seconds in the game and stores the value into the "timer" variable.
 //    Based on "timer", we decide what game entities to spawn.
     private void setupSpawningTimer() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
 
             // check if game is running

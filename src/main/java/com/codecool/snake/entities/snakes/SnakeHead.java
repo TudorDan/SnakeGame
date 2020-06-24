@@ -8,6 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.*;
 
+import com.codecool.snake.resources.GameInfoBox;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -94,6 +95,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (entity instanceof GoldChest) {
 //            Add 100 points to snake score
             snake.changeScore(100);
+
         }
 
         if (entity instanceof FireBall) {
