@@ -16,7 +16,7 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
     private static Random rnd = new Random();
 
     public ThirdEnemy() {
-        super(20);
+        super(-20);
 
         setImage(Globals.getInstance().getImage("Spaceship"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
@@ -40,10 +40,10 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if (entity instanceof SnakeHead) {
             destroy();
         }
-        if(entity instanceof SnakeBody){
+        if (entity instanceof SnakeBody) {
             destroy();
         }
     }

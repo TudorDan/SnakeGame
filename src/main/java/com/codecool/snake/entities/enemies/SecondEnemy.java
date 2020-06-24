@@ -16,22 +16,32 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
 
+    private double direction;
+    private int speed;
+
     public SecondEnemy() {
-        super(20);
+        super(-20);
 
         setImage(Globals.getInstance().getImage("Bird"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = Globals.WINDOW_WIDTH;
+        direction = 0;
         setRotate(direction);
 
-        int speed = 3;
-        heading = Utils.directionToVector(direction, speed);
+        speed = 3;
+
     }
 
     @Override
     public void step() {
+        if (direction < 360) {
+            direction++;
+        } else {
+            direction = 0;
+        }
+        heading = Utils.directionToVector(direction, speed);
+
         if (isOutOfBounds()) {
             destroy();
         }
@@ -41,10 +51,10 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if (entity instanceof SnakeHead) {
             destroy();
         }
-        if(entity instanceof SnakeBody){
+        if (entity instanceof SnakeBody) {
             destroy();
         }
     }

@@ -150,7 +150,7 @@ public class Game extends Pane {
                     spawnThirdEnemies(3);
                 }
 //                Destroy all enemies if PowerBoom is active
-                if (this.powerBoom) {
+                if (powerBoom) {
                     clearEnemies();
                 }
             }
