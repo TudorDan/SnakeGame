@@ -34,6 +34,8 @@ public class Game extends Pane {
     private GameTimer gameTimer = new GameTimer();
     //    Shady type of integer idk what this is but normal int won't work so who cares
     AtomicInteger timer = new AtomicInteger();
+    public static boolean powerBoom = false;
+    public static boolean speedPotion = false;
 
     private static final int speedPotionSpawnDuration = 10;
     private static final int goldChestSpawnDuration = 15;
@@ -106,7 +108,7 @@ public class Game extends Pane {
             // check if game is running
             if (Globals.getInstance().getGameLoop().isRunning()) {
                 // Spawn one SpeedPotion per 25 seconds
-                if (timer.intValue() % 25 == 0) {
+                if (timer.intValue() % 25 == 0 && !this.speedPotion) {
                     new SpeedPotion(speedPotionSpawnDuration);
                 }
                 // Spawn one PowerBoom per 40 seconds
@@ -125,6 +127,10 @@ public class Game extends Pane {
                 if (timer.intValue() % 10 == 0) {
                     spawnEnemies(4);
                 }
+//                Destroy all enemies if PowerBoom is active
+                if (this.powerBoom) {
+                    clearEnemies();
+                }
             }
 
         }));
@@ -136,5 +142,9 @@ public class Game extends Pane {
         setBackground(new Background(new BackgroundImage(tableBackground,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+    }
+
+    public void clearEnemies() {
+        getChildren().removeIf(child -> child instanceof Enemy);
     }
 }

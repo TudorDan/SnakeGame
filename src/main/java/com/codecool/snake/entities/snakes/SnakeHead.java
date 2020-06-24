@@ -73,6 +73,7 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof SpeedPotion) {
+            Game.speedPotion = true;
 //            Double the snake default speed
             snake.changeSpeed(2);
 //            The effect lasts for 10 seconds
@@ -81,6 +82,7 @@ public class SnakeHead extends GameEntity implements Interactable {
                 spawnedTimer.addAndGet(1);
                 if (spawnedTimer.intValue() == 10) {
                     snake.changeSpeed(-1);
+                    Game.speedPotion = false;
                 }
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
@@ -98,7 +100,17 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof PowerBoom) {
-//            TODO
+            Game.powerBoom = true;
+//            The effect lasts for 3 seconds
+            AtomicInteger spawnedTimer = new AtomicInteger();
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                spawnedTimer.addAndGet(1);
+                if (spawnedTimer.intValue() == 3) {
+                    Game.powerBoom = false;
+                }
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
         }
     }
 
