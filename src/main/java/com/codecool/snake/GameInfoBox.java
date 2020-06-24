@@ -1,11 +1,10 @@
-package com.codecool.snake.resources;
+package com.codecool.snake;
 
 import com.codecool.snake.Game;
 import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -17,11 +16,15 @@ public class GameInfoBox {
     static VBox snake2InfoBox;
     static Text titleSnake1;
     static Text titleSnake2;
+    static HBox speedPotionBox;
+    static Text speedPotionCounter;
+    static Game game;
 
     public GameInfoBox(Game game) {
         createSnake1InfoBox();
         createSnake2InfoBox();
         createGameInfoBox(game);
+        GameInfoBox.game = game;
     }
 
     private void createGameInfoBox(Game game) {
@@ -67,5 +70,31 @@ public class GameInfoBox {
 
     public void changeTitleSnake2(String newTitle) {
         titleSnake2.setText(newTitle);
+    }
+
+    public static void createSpeedPotionBox() {
+        speedPotionBox = new HBox();
+        speedPotionBox.setPadding(new Insets(10));
+        speedPotionBox.setSpacing(8);
+
+        Image img = new Image("potion.png");
+        ImageView imgView = new ImageView(img);
+
+        speedPotionCounter = new Text("10");
+        speedPotionCounter.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        speedPotionCounter.setFill(Color.WHITE);
+
+        speedPotionBox.getChildren().add(imgView);
+        speedPotionBox.getChildren().add(speedPotionCounter);
+
+        snake1InfoBox.getChildren().add(speedPotionBox);
+    }
+
+    public static void changeSpeedPotionCounter(String counter) {
+        speedPotionCounter.setText(counter);
+    }
+
+    public static void destroySpeedPotionBox() {
+        snake1InfoBox.getChildren().remove(speedPotionBox);
     }
 }

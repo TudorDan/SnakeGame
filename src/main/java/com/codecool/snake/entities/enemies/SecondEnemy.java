@@ -17,7 +17,7 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
     private static Random rnd = new Random();
 
     public SecondEnemy() {
-        super(20);
+        super(-20);
 
         setImage(Globals.getInstance().getImage("Bird"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);

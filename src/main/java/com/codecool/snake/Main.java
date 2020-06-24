@@ -1,6 +1,6 @@
 package com.codecool.snake;
 
-import com.codecool.snake.resources.GameInfoBox;
+import com.codecool.snake.GameInfoBox;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;

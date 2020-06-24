@@ -7,7 +7,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 import com.codecool.snake.HealthBar;
 
-import com.codecool.snake.resources.GameInfoBox;
+import com.codecool.snake.GameInfoBox;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
@@ -105,7 +105,9 @@ public class Snake implements Animatable {
 
     public int getScore() { return this.score; }
 
-    public void restoreHealth() {this.health = 100;}
+    public void restoreHealth() {
+        healthBar.restoreHealth();
+    }
 
     public int getHealth() {return healthBar.getHealth();}
 

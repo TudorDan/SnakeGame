@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.Game;
+import com.codecool.snake.GameInfoBox;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
@@ -8,7 +9,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.*;
 
-import com.codecool.snake.resources.GameInfoBox;
+import com.codecool.snake.GameInfoBox;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -77,14 +78,17 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (entity instanceof SpeedPotion) {
             Game.speedPotion = true;
 //            Double the snake default speed
-            snake.changeSpeed(2);
+            snake.changeSpeed(1);
 //            The effect lasts for 10 seconds
+            GameInfoBox.createSpeedPotionBox();
             AtomicInteger spawnedTimer = new AtomicInteger();
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
                 spawnedTimer.addAndGet(1);
+                GameInfoBox.changeSpeedPotionCounter(String.valueOf(10 - spawnedTimer.intValue()));
                 if (spawnedTimer.intValue() == 10) {
                     snake.changeSpeed(-1);
                     Game.speedPotion = false;
+                    GameInfoBox.destroySpeedPotionBox();
                 }
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
