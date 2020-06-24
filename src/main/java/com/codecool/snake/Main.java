@@ -18,11 +18,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         Game game = new Game();
         Scene mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
-        game.setTableBackground(new Image("/background.jpg"));
+        game.setTableBackground(new Image("/background.png"));
 
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(mainScene);
         primaryStage.show();
+        Globals.getInstance().stage = primaryStage;
 
         // create menu bar and set its width
         MenuBar menuBar = new MenuBar();
@@ -33,15 +34,11 @@ public class Main extends Application {
 
         // create restart option
         MenuItem restart = new MenuItem("Restart");
-        restart.setOnAction(e -> {
-            game.restart();
-        });
+        restart.setOnAction(e -> game.restart());
 
         // create exit option
         MenuItem exit = new MenuItem("Exit");
-        exit.setOnAction(e -> {
-            game.exit();
-        });
+        exit.setOnAction(e -> game.exit());
 
         // add options to game menu
         menuGame.getItems().add(restart);

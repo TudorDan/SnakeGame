@@ -41,10 +41,6 @@ public class GameLoop {
 
     public void stop() {
         running = false;
-//        System.out.println("CEVA!!!!!!!!!!!!!!");
-////        enemy.clearAll();
-//        Globals.getInstance().display.clear();
-//        System.out.println("CEVA!!!!!!!!!!!!!!22222222222222");
     }
 
     public void step() {

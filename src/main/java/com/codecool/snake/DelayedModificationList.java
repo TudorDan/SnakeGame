@@ -1,4 +1,4 @@
-package com.codecool.snake;
+ package com.codecool.snake;
 
 import java.util.Collections;
 import java.util.LinkedList;

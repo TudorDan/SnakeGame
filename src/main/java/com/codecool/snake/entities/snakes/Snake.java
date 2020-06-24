@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
+import com.codecool.snake.HealthBar;
 
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -14,6 +15,7 @@ public class Snake implements Animatable {
     private int speed;
     private int health = 100;
     private int score;
+    private HealthBar healthBar;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -22,6 +24,7 @@ public class Snake implements Animatable {
     public Snake(Point2D position) {
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
+        healthBar = new HealthBar();
 
         addPart(4);
 
@@ -66,15 +69,18 @@ public class Snake implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health += diff;
+        healthBar.changeHealth(diff);
     }
 
     public void changeScore(int diff) { score += diff; }
 
-    public void checkForGameOverConditions() {
-        if (head.isOutOfBounds() || health <= 0) {
+
+    private void checkForGameOverConditions() {
+        if (head.isOutOfBounds() || healthBar.getHealth() <= 0) {
+
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Globals.getInstance().showGameWonDialog(body.getList().size() + 1);
         }
     }
 
@@ -97,9 +103,11 @@ public class Snake implements Animatable {
 
     public void restoreHealth() {this.health = 100;}
 
-    public int getHealth() {return this.health;}
+    public int getHealth() {return healthBar.getHealth();}
 
     public void changeSpeed(int diff) { this.speed += diff; }
 
     public int getSpeed() {return this.speed;}
+
+    public HealthBar getHealthBar() {return healthBar;}
 }

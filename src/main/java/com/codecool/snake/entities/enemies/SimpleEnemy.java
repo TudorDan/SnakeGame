@@ -22,7 +22,7 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     private static Random rnd = new Random();
 
     public SimpleEnemy() {
-        super(10);
+        super(-10);
 
 //        List<Point2D> headBody = Globals.getInstance().getGameLoop().SnakePos();
 
