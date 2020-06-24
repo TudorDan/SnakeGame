@@ -13,10 +13,17 @@ import javafx.application.Platform;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -25,14 +32,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
-//    Shady type of integer idk what this is but normal int won't work so who cares
+    //    Shady type of integer idk what this is but normal int won't work so who cares
     AtomicInteger timer = new AtomicInteger();
 
     private static final int speedPotionSpawnDuration = 10;
     private static final int goldChestSpawnDuration = 15;
     private static final int fireBallSpawnDuration = 8;
     private static final int powerBoomSpawnDuration = 5;
-
 
     public Game() {
         Globals.getInstance().game = this;
@@ -92,27 +98,35 @@ public class Game extends Pane {
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
 
-//    This function counts the seconds in the game and stores the value into the "timer" variable.
+    //    This function counts the seconds in the game and stores the value into the "timer" variable.
 //    Based on "timer", we decide what game entities to spawn.
     private void setupSpawningTimer() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
-
-//            Spawn one SpeedPotion per 25 seconds
-            if (timer.intValue() % 25 == 0) {
-                new SpeedPotion(speedPotionSpawnDuration);
-//            Spawn one PowerBoom per 40 seconds
-            } else if (timer.intValue() % 40 == 0) {
-                new PowerBoom(powerBoomSpawnDuration);
-            } else if (timer.intValue() % 100 == 0) {
-                new GoldChest(goldChestSpawnDuration);
-            } else if (timer.intValue() % 50 == 0) {
-                new FireBall(fireBallSpawnDuration);
+            // check if game is running
+            if (Globals.getInstance().getGameLoop().isRunning()) {
+                // Spawn one SpeedPotion per 25 seconds
+                if (timer.intValue() % 25 == 0) {
+                    new SpeedPotion(speedPotionSpawnDuration);
+                }
+                // Spawn one PowerBoom per 40 seconds
+                if (timer.intValue() % 40 == 0) {
+                    new PowerBoom(powerBoomSpawnDuration);
+                }
+                // Spawn one GoldChest per 100 seconds
+                if (timer.intValue() % 100 == 0) {
+                    new GoldChest(goldChestSpawnDuration);
+                }
+                // Spawn one FireBall per 50 seconds
+                if (timer.intValue() % 50 == 0) {
+                    new FireBall(fireBallSpawnDuration);
+                }
+                // Spawn 4 Enemies per 10 seconds
+                if (timer.intValue() % 10 == 0) {
+                    spawnEnemies(4);
+                }
             }
 
-            if (timer.intValue() % 10 == 0) {
-                spawnEnemies(4);
-            }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();

@@ -70,6 +70,7 @@ public class Snake implements Animatable {
         if (head.isOutOfBounds() || healthBar.getHealth() <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
+            Globals.getInstance().showGameWonDialog(body.getList().size() + 1);
         }
     }
 
