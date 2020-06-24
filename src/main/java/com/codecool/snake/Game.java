@@ -100,14 +100,14 @@ public class Game extends Pane {
         scene.setOnKeyReleased(event -> InputHandler.getInstance().setKeyReleased(event.getCode()));
     }
 
-    //    This function counts the seconds in the game and stores the value into the "timer" variable.
+//    This function counts the seconds in the game and stores the value into the "timer" variable.
 //    Based on "timer", we decide what game entities to spawn.
     private void setupSpawningTimer() {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             timer.addAndGet(1);
             // check if game is running
             if (Globals.getInstance().getGameLoop().isRunning()) {
-                // Spawn one SpeedPotion per 25 seconds
+                // Spawn one SpeedPotion per 25 seconds if SpeedPotion is not already active
                 if (timer.intValue() % 25 == 0 && !this.speedPotion) {
                     new SpeedPotion(speedPotionSpawnDuration);
                 }
