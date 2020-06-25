@@ -41,8 +41,8 @@ public abstract class GameEntity extends ImageView {
 
     public void spawn() {
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 20));
+        setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
     }
 
 //    Overloading the default function to achieve creating a game entity with a limited life time

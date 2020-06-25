@@ -23,14 +23,14 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
         super(-20);
 
         setImage(Globals.getInstance().getImage("Bird"));
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 20));
+        setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
 
         // ensure enemy is not spawn on snake
         Snake snake = Globals.getInstance().game.getSnake();
         while(snake.isTouchedBy(this)) {
-            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+            setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 20));
+            setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
         }
 
         direction = 0;
