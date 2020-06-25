@@ -59,19 +59,31 @@ public class Globals {
         resources.addImage("PowerBoom", new Image("power-boom.png"));
         resources.addImage("FireBall", new Image("ball-of-fire.png"));
         resources.addImage("Life", new Image("heart.png"));
-//        HEALTH BAR
-        resources.addImage("Health100", new Image("healthfull.png"));
-        resources.addImage("Health90", new Image("health90.png"));
-        resources.addImage("Health80", new Image("health80.png"));
-        resources.addImage("Health70", new Image("health70.png"));
-        resources.addImage("Health60", new Image("health60.png"));
-        resources.addImage("Health50", new Image("health50.png"));
-        resources.addImage("Health40", new Image("health40.png"));
-        resources.addImage("Health30", new Image("health30.png"));
-        resources.addImage("Health20", new Image("health20.png"));
-        resources.addImage("Health10", new Image("health10.png"));
-        resources.addImage("Health0", new Image("health0.png"));
+//        HEALTH BAR RED
+        resources.addImage("Health100Red", new Image("healthfull.png"));
+        resources.addImage("Health90Red", new Image("health90.png"));
+        resources.addImage("Health80Red", new Image("health80.png"));
+        resources.addImage("Health70Red", new Image("health70.png"));
+        resources.addImage("Health60Red", new Image("health60.png"));
+        resources.addImage("Health50Red", new Image("health50.png"));
+        resources.addImage("Health40Red", new Image("health40.png"));
+        resources.addImage("Health30Red", new Image("health30.png"));
+        resources.addImage("Health20Red", new Image("health20.png"));
+        resources.addImage("Health10Red", new Image("health10.png"));
+        resources.addImage("Health0Red", new Image("health0.png"));
 
+//        HEALTH BAR BLUE
+        resources.addImage("Health100Blue", new Image("hfull.png"));
+        resources.addImage("Health90Blue", new Image("h9.png"));
+        resources.addImage("Health80Blue", new Image("h8.png"));
+        resources.addImage("Health70Blue", new Image("h7.png"));
+        resources.addImage("Health60Blue", new Image("h6.png"));
+        resources.addImage("Health50Blue", new Image("h5.png"));
+        resources.addImage("Health40Blue", new Image("h4.png"));
+        resources.addImage("Health30Blue", new Image("h3.png"));
+        resources.addImage("Health20Blue", new Image("h2.png"));
+        resources.addImage("Health10Blue", new Image("h1.png"));
+        resources.addImage("Health0Blue", new Image("h0.png"));
     }
 
     public Image getImage(String name) {

@@ -9,14 +9,23 @@ public class HealthBar extends GameEntity {
     private Snake snake;
 
     public HealthBar(Snake snake) {
-        setImage(Globals.getInstance().getImage("Health100"));
-        setX(10);
-        setY(30);
         this.snake = snake;
+        switch (this.snake.getName()) {
+            case "Red":
+                setImage(Globals.getInstance().getImage("Health100Red"));
+                setX(10);
+                setY(30);
+                break;
+            case "Blue":
+                setImage(Globals.getInstance().getImage("Health100Blue"));
+                setX(10);
+                setY(100);
+                break;
+        }
     }
 
     public void changeHealthBar() {
-        setImage(Globals.getInstance().getImage("Health" + getHealth()));
+        setImage(Globals.getInstance().getImage("Health" + getHealth() + this.snake.getName()));
     }
 
     public Snake getSnake() {

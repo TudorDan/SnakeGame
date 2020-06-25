@@ -32,7 +32,7 @@ public class GameInfoBox {
         gameInfoBox.setBackground(new Background(new BackgroundFill(Color.rgb(40, 40, 40, 0.8), CornerRadii.EMPTY, Insets.EMPTY)));
         gameInfoBox.setPrefSize(200, 100);
         gameInfoBox.setLayoutX(30);
-        gameInfoBox.setLayoutY(120);
+        gameInfoBox.setLayoutY(200);
 
         gameInfoBox.getChildren().add(snake1InfoBox);
         gameInfoBox.getChildren().add(snake2InfoBox);
