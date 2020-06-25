@@ -18,14 +18,22 @@ public class Shooting extends GameEntity implements Interactable, Animatable {
     Shooting(Snake snake) {
         this.snake = snake;
         if (snake.getName().equals("Red")) {
-            setImage(Globals.getInstance().getImage("FireBall"));
+            if (!snake.getFireBall()) {
+                setImage(Globals.getInstance().getImage("FireBall"));
+            } else {
+                setImage(Globals.getInstance().getImage("FireBallBig"));
+            }
             heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + SPEED);
             setX(snake.getHead().getPosition().getX());
             setY(snake.getHead().getPosition().getY());
         }
 
         else {
-            setImage(Globals.getInstance().getImage("IceBall"));
+            if (!snake.getFireBall()) {
+                setImage(Globals.getInstance().getImage("IceBall"));
+            } else {
+                setImage(Globals.getInstance().getImage("IceBallBig"));
+            }
             heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + SPEED);
             setX(snake.getHead().getPosition().getX());
             setY(snake.getHead().getPosition().getY());

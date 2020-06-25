@@ -27,6 +27,7 @@ public class Snake implements Animatable {
     private DelayedModificationList<GameEntity> body;
 
     private String name;
+    private boolean fireBall = false;
 
 
     public Snake(Point2D position, String name) {
@@ -64,6 +65,11 @@ public class Snake implements Animatable {
         return head;
     }
 
+    public void setFireBall(boolean fireBall) {
+        this.fireBall = fireBall;
+    }
+
+    public boolean getFireBall() {return this.fireBall;}
 
     public DelayedModificationList<GameEntity> getBody() {
         return body;
