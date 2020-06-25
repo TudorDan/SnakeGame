@@ -139,9 +139,7 @@ public class Game extends Pane {
                 }
                 // Spawn 2 Enemies per 10 seconds
                 if (timer.intValue() % 7 == 0) {
-                    if (Globals.getInstance().getGameLoop().checkSpawnCollisions()) {
-                        spawnEnemies(3);
-                    }
+                    spawnEnemies(3);
                 }
                 if (timer.intValue() % 15 == 0) {
                     spawnSecondEnemies(2);

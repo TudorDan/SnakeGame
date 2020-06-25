@@ -39,8 +39,8 @@ public class SnakeBody extends GameEntity implements Interactable {
     public void apply(GameEntity entity) {
         if(entity instanceof Enemy){
 //            Decrease snake health with a value equal to the damage produced by the enemy
-            snake.changeHealth(((Enemy) entity).getDamage());
-            snake.getHealthBar().changeHealthBar();
+//            snake.changeHealth(((Enemy) entity).getDamage());
+//            snake.getHealthBar().changeHealthBar();
             System.out.println("BODY contact");
 //            Spawn life if health is below 30
             if (snake.getHealth() < 30) {

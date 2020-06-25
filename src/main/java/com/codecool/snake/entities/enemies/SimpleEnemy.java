@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
 
@@ -24,13 +25,16 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     public SimpleEnemy() {
         super(-10);
 
-        //List<Point2D> headBody = Globals.getInstance().getGameLoop().SnakePos();
-
-//        System.out.println(headBody);
-
         setImage(Globals.getInstance().getImage("SimpleEnemy"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+
+        // ensure enemy is not spawn on snake
+        Snake snake = Globals.getInstance().game.getSnake();
+        while(snake.isTouchedBy(this)) {
+            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        }
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
@@ -53,10 +57,10 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         if(entity instanceof SnakeHead){
             destroy();
         }
-        if(entity instanceof SnakeBody){
-            System.out.println("destroy Snake Body!!!");
-            destroy();
-        }
+//        if(entity instanceof SnakeBody){
+//            System.out.println("destroy Snake Body!!!");
+//            destroy();
+//        }
     }
 
     @Override

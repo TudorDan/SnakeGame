@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.resources.Resources;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
+
 // class for holding all static stuff
 public class Globals {
     private static Globals instance = null;
@@ -27,7 +32,6 @@ public class Globals {
 
     private GameLoop gameLoop;
     private Resources resources;
-
 
     public static Globals getInstance() {
         if(instance == null) instance = new Globals();

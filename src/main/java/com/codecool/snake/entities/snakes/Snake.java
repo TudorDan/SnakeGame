@@ -32,6 +32,20 @@ public class Snake implements Animatable {
         this.speed = 2;
     }
 
+    public boolean isTouchedBy(GameEntity gameEntity) {
+        //check if game entity touches head
+        if(head.getBoundsInParent().intersects(gameEntity.getBoundsInParent())) {
+            return true;
+        }
+        //check if game entity touches body
+        for(GameEntity bodyPart : body.getList()) {
+            if(bodyPart.getBoundsInParent().intersects(gameEntity.getBoundsInParent())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public SnakeHead getHead() {
         return head;
     }
