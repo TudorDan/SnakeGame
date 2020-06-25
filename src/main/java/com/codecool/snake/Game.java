@@ -1,6 +1,5 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.enemies.SecondEnemy;
@@ -9,23 +8,14 @@ import com.codecool.snake.entities.enemies.ThirdEnemy;
 import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
-
-
-import javafx.application.Platform;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -58,7 +48,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(4);
+        spawnEnemies(2);
         spawnFood();
         setupSpawningTimer();
 
@@ -133,27 +123,25 @@ public class Game extends Pane {
                     new PowerBoom(powerBoomSpawnDuration);
                 }
                 // Spawn one GoldChest per 100 seconds
-                if (timer.intValue() % 100 == 0) {
+                if (timer.intValue() % 35 == 0) {
                     new GoldChest(goldChestSpawnDuration);
                 }
                 // Spawn one FireBall per 50 seconds
-                if (timer.intValue() % 50 == 0) {
+                if (timer.intValue() % 30 == 0) {
                     new FireBall(fireBallSpawnDuration);
                 }
-                // Spawn 4 Enemies per 10 seconds
-                if (timer.intValue() % 10 == 0) {
-                    if (Globals.getInstance().getGameLoop().checkSpawnCollisions()) {
-                        spawnEnemies(4);
-                    }
+                // Spawn 2 Enemies per 10 seconds
+                if (timer.intValue() % 7 == 0) {
+                    spawnEnemies(3);
                 }
-                if (timer.intValue() % 30 == 0) {
-                    spawnSecondEnemies(3);
+                if (timer.intValue() % 15 == 0) {
+                    spawnSecondEnemies(2);
                 }
-                if (timer.intValue() % 40 == 0) {
-                    spawnThirdEnemies(3);
+                if (timer.intValue() % 20 == 0) {
+                    spawnThirdEnemies(1);
                 }
 //                Destroy all enemies if PowerBoom is active
-                if (this.powerBoom) {
+                if (powerBoom) {
                     clearEnemies();
                 }
             }

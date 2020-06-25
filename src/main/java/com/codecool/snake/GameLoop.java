@@ -21,16 +21,6 @@ public class GameLoop {
         this.snake = snake;
     }
 
-    public List<Point2D> SnakePos() {
-        Point2D head = snake.getHead().getPosition();
-        Point2D body = (Point2D) snake.getBody().getList();
-        List<Point2D> headBody = new ArrayList<>();
-        headBody.add(head);
-        headBody.add(body);
-
-        return headBody;
-    }
-
     public boolean isRunning() {
         return running;
     }

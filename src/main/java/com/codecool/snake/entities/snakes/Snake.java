@@ -33,6 +33,20 @@ public class Snake implements Animatable {
         this.speed = 2;
     }
 
+    public boolean isTouchedBy(GameEntity gameEntity) {
+        //check if game entity touches head
+        if (head.getBoundsInParent().intersects(gameEntity.getBoundsInParent())) {
+            return true;
+        }
+        //check if game entity touches body
+        for (GameEntity bodyPart : body.getList()) {
+            if (bodyPart.getBoundsInParent().intersects(gameEntity.getBoundsInParent())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public SnakeHead getHead() {
         return head;
     }
@@ -53,8 +67,8 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if(InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
         return turnDir;
     }
 
@@ -81,6 +95,8 @@ public class Snake implements Animatable {
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || healthBar.getHealth() <= 0) {
+            System.out.println("outOfBounds: " + head.isOutOfBounds());
+            System.out.println("health: " + healthBar.getHealth());
 
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
@@ -90,7 +106,7 @@ public class Snake implements Animatable {
 
     private void updateSnakeBodyHistory() {
         GameEntity prev = head;
-        for(GameEntity currentPart : body.getList()) {
+        for (GameEntity currentPart : body.getList()) {
             currentPart.setPosition(prev.getPosition());
             prev = currentPart;
         }
@@ -99,21 +115,32 @@ public class Snake implements Animatable {
     private GameEntity getLastPart() {
         GameEntity result = body.getLast();
 
-        if(result != null) return result;
+        if (result != null) return result;
         return head;
     }
 
-    public int getScore() { return this.score; }
+    public int getScore() {
+        return this.score;
+    }
 
     public void restoreHealth() {
         healthBar.restoreHealth();
+        this.health = 100;
     }
 
-    public int getHealth() {return healthBar.getHealth();}
+    public int getHealth() {
+        return healthBar.getHealth();
+    }
 
-    public void changeSpeed(int diff) { this.speed += diff; }
+    public void changeSpeed(int diff) {
+        this.speed += diff;
+    }
 
-    public int getSpeed() {return this.speed;}
+    public int getSpeed() {
+        return this.speed;
+    }
 
-    public HealthBar getHealthBar() {return healthBar;}
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
 }

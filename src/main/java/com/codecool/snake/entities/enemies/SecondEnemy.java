@@ -1,20 +1,23 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.geometry.Point2D;
 
 import java.util.Random;
-
-import javafx.geometry.Point2D;
 
 public class SecondEnemy extends Enemy implements Animatable, Interactable {
     private Point2D heading;
     private static Random rnd = new Random();
+
+    private double direction;
+    private final int speed;
 
     public SecondEnemy() {
         super(-20);
@@ -23,15 +26,29 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = Globals.WINDOW_WIDTH;
+        // ensure enemy is not spawn on snake
+        Snake snake = Globals.getInstance().game.getSnake();
+        while(snake.isTouchedBy(this)) {
+            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        }
+
+        direction = 0;
         setRotate(direction);
 
-        int speed = 3;
-        heading = Utils.directionToVector(direction, speed);
+        speed = 3;
+
     }
 
     @Override
     public void step() {
+        if (direction < 360) {
+            direction++;
+        } else {
+            direction = 0;
+        }
+        heading = Utils.directionToVector(direction, speed);
+
         if (isOutOfBounds()) {
             destroy();
         }
@@ -41,10 +58,11 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if (entity instanceof SnakeHead) {
+            System.out.println("damage 20");
             destroy();
         }
-        if(entity instanceof SnakeBody){
+        if (entity instanceof SnakeBody) {
             destroy();
         }
     }
