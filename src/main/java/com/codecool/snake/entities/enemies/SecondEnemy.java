@@ -1,23 +1,27 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.Globals;
-import com.codecool.snake.Utils;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.Globals;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.geometry.Point2D;
-
+import com.codecool.snake.entities.snakes.Shooting;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import javafx.geometry.Point2D;
+
+
+
 public class SecondEnemy extends Enemy implements Animatable, Interactable {
+
     private Point2D heading;
     private static Random rnd = new Random();
-
-    private double direction;
-    private final int speed;
+    private int hitCount = 2;
 
     public SecondEnemy() {
         super(-20);
@@ -34,22 +38,15 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
             setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
         }
 
-        direction = 0;
+        double direction = rnd.nextDouble() * 360;
         setRotate(direction);
 
-        speed = 3;
-
+        int speed = 1;
+        heading = Utils.directionToVector(direction, speed);
     }
 
     @Override
     public void step() {
-        if (direction < 360) {
-            direction++;
-        } else {
-            direction = 0;
-        }
-        heading = Utils.directionToVector(direction, speed);
-
         if (isOutOfBounds()) {
             destroy();
         }
@@ -59,11 +56,21 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if (entity instanceof SnakeHead) {
-            System.out.println("damage 20");
-            destroy();
+        if(entity instanceof SnakeHead || entity instanceof Shooting){
+            System.out.println("damage 10");
+            if (hitCount == 0) {
+                if (entity instanceof SnakeHead || entity instanceof Shooting) {
+                    System.out.println(getMessage());
+
+                    destroy();
+                }
+            }
+            else {
+                hitCount --;
+            }
         }
-        if (entity instanceof SnakeBody) {
+        if(entity instanceof SnakeBody){
+            System.out.println("enemy contact Snake Body!");
             destroy();
         }
     }

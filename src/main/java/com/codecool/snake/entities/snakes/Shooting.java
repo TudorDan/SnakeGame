@@ -6,6 +6,8 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
+import com.codecool.snake.entities.enemies.SecondEnemy;
+import com.codecool.snake.entities.enemies.ThirdEnemy;
 import javafx.geometry.Point2D;
 
 
@@ -53,6 +55,10 @@ public class Shooting extends GameEntity implements Interactable, Animatable {
     @Override
     public void apply(GameEntity entity) {
         if (entity instanceof Enemy) {
+            destroy();
+            System.out.println(getMessage());
+        }
+        if (entity instanceof SecondEnemy) {
             destroy();
             System.out.println(getMessage());
         }
