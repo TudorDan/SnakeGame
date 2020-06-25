@@ -55,12 +55,13 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof SnakeHead){
+            System.out.println("damage 10");
             destroy();
         }
-//        if(entity instanceof SnakeBody){
-//            System.out.println("destroy Snake Body!!!");
-//            destroy();
-//        }
+        if(entity instanceof SnakeBody){
+            System.out.println("enemy contact Snake Body!");
+            destroy();
+        }
     }
 
     @Override

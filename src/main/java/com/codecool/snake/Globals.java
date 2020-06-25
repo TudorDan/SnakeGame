@@ -1,23 +1,15 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.resources.Resources;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.List;
 
 // class for holding all static stuff
 public class Globals {
@@ -34,7 +26,7 @@ public class Globals {
     private Resources resources;
 
     public static Globals getInstance() {
-        if(instance == null) instance = new Globals();
+        if (instance == null) instance = new Globals();
         return instance;
     }
 
@@ -59,7 +51,7 @@ public class Globals {
         resources.addImage("Life", new Image("heart.png"));
 
         resources.addImage("Bird", new Image("greenBird.png"));
-        resources.addImage("Spaceship", new Image("spaceship3.png"));
+        resources.addImage("Boss", new Image("boss.png"));
 
         resources.addImage("Health100", new Image("healthfull.png"));
         resources.addImage("Health90", new Image("health90.png"));
@@ -75,11 +67,17 @@ public class Globals {
 
     }
 
-    public Image getImage(String name) { return resources.getImage(name); }
+    public Image getImage(String name) {
+        return resources.getImage(name);
+    }
 
-    public void startGame() { gameLoop.start(); }
+    public void startGame() {
+        gameLoop.start();
+    }
 
-    public void stopGame() { gameLoop.stop(); }
+    public void stopGame() {
+        gameLoop.stop();
+    }
 
     public void showGameWonDialog(int snakeLength) {
         final Stage dialog = new Stage();

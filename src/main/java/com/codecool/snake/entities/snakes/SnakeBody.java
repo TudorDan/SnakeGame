@@ -1,10 +1,9 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
-import com.codecool.snake.entities.powerups.Life;
 import javafx.geometry.Point2D;
 
 import java.util.LinkedList;
@@ -43,9 +42,9 @@ public class SnakeBody extends GameEntity implements Interactable {
 //            snake.getHealthBar().changeHealthBar();
             System.out.println("BODY contact");
 //            Spawn life if health is below 30
-            if (snake.getHealth() < 30) {
-                new Life(10);
-            }
+//            if (snake.getHealth() < 30) {
+//                new Life(10);
+//            }
         }
     }
 

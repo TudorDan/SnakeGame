@@ -23,13 +23,13 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
     public ThirdEnemy() {
         super(-20);
 
-        setImage(Globals.getInstance().getImage("Spaceship"));
+        setImage(Globals.getInstance().getImage("Boss"));
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
         // ensure enemy is not spawn on snake
         Snake snake = Globals.getInstance().game.getSnake();
-        while(snake.isTouchedBy(this)) {
+        while (snake.isTouchedBy(this)) {
             setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
             setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
         }
@@ -44,7 +44,7 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void step() {
-        if(temp < 100) {
+        if (temp < 70) {
             temp++;
         } else {
             temp = 1;
@@ -63,11 +63,12 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
     @Override
     public void apply(GameEntity entity) {
         if (entity instanceof SnakeHead) {
+            System.out.println("damage 30");
             destroy();
         }
-//        if (entity instanceof SnakeBody) {
-//            destroy();
-//        }
+        if (entity instanceof SnakeBody) {
+            destroy();
+        }
     }
 
     @Override

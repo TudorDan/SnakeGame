@@ -1,20 +1,18 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.Game;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.*;
-
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -49,7 +47,7 @@ public class SnakeHead extends GameEntity implements Interactable {
     public void apply(GameEntity entity) {
         //System.out.println(this.getMessage());
 
-        if(entity instanceof Enemy){
+        if (entity instanceof Enemy) {
 //            Decrease snake health with a value equal to the damage produced by the enemy
             snake.changeHealth(((Enemy) entity).getDamage());
             snake.getHealthBar().changeHealthBar();
@@ -59,7 +57,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             }
         }
 
-        if(entity instanceof Food){
+        if (entity instanceof Food) {
 //            Increase snake size
             snake.addPart(1);
 //            Spawn new food after eating
@@ -68,7 +66,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeScore(1);
         }
 
-        if (entity instanceof Life){
+        if (entity instanceof Life) {
 //            Restore snake life to 100%
             snake.restoreHealth();
         }
