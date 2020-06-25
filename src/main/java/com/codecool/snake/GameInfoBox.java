@@ -17,7 +17,9 @@ public class GameInfoBox {
     static Text titleSnake1;
     static Text titleSnake2;
     static HBox speedPotionBox;
+    static HBox fireBallBox;
     static Text speedPotionCounter;
+    static Text fireBallCounter;
     static Game game;
 
     public GameInfoBox(Game game) {
@@ -97,8 +99,37 @@ public class GameInfoBox {
         }
     }
 
+    public static void createFireBallBox(String snakeName) {
+        fireBallBox = new HBox();
+        fireBallBox.setPadding(new Insets(10));
+        fireBallBox.setSpacing(8);
+
+        Image img = new Image("ball-of-fire.png");
+        ImageView imgView = new ImageView(img);
+
+        fireBallCounter = new Text("10");
+        fireBallCounter.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        fireBallCounter.setFill(Color.WHITE);
+
+        fireBallBox.getChildren().add(imgView);
+        fireBallBox.getChildren().add(fireBallCounter);
+
+        switch (snakeName) {
+            case "Blue":
+                snake1InfoBox.getChildren().add(fireBallBox);
+                break;
+            case "Red":
+                snake2InfoBox.getChildren().add(fireBallBox);
+                break;
+        }
+    }
+
     public static void changeSpeedPotionCounter(String counter) {
         speedPotionCounter.setText(counter);
+    }
+
+    public static void changeFireBallCounter(String counter) {
+        fireBallCounter.setText(counter);
     }
 
     public static void destroySpeedPotionBox(String snakeName) {
@@ -108,6 +139,17 @@ public class GameInfoBox {
                 break;
             case "Red":
                 snake2InfoBox.getChildren().remove(speedPotionBox);
+                break;
+        }
+    }
+
+    public static void destroyFireBallBox(String snakeName) {
+        switch (snakeName) {
+            case "Blue":
+                snake1InfoBox.getChildren().remove(fireBallBox);
+                break;
+            case "Red":
+                snake2InfoBox.getChildren().remove(fireBallBox);
                 break;
         }
     }

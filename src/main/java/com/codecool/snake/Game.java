@@ -31,6 +31,7 @@ public class Game extends Pane {
     Timeline timeline;
     public static boolean powerBoom = false;
     public static boolean speedPotion = false;
+    public static boolean fireBall = false;
 
     private static final int speedPotionSpawnDuration = 10;
     private static final int goldChestSpawnDuration = 15;
@@ -133,16 +134,16 @@ public class Game extends Pane {
                 if (timer.intValue() % 40 == 0) {
                     new PowerBoom(powerBoomSpawnDuration);
                 }
-                // Spawn one GoldChest per 100 seconds
+                // Spawn one GoldChest per 35 seconds
                 if (timer.intValue() % 35 == 0) {
                     new GoldChest(goldChestSpawnDuration);
                 }
-                // Spawn one FireBall per 50 seconds
-                if (timer.intValue() % 30 == 0) {
+                // Spawn one FireBall per 30 seconds
+                if (timer.intValue() % 30 == 0 && !fireBall) {
                     new FireBall(fireBallSpawnDuration);
                 }
-                // Spawn 2 Enemies per 10 seconds
-                if (timer.intValue() % 7 == 0) {
+                // Spawn 3 Enemies per 5 seconds
+                if (timer.intValue() % 5 == 0) {
                     spawnEnemies(3);
                 }
                 if (timer.intValue() % 15 == 0) {
@@ -154,6 +155,10 @@ public class Game extends Pane {
 //                Destroy all enemies if PowerBoom is active
                 if (powerBoom) {
                     clearEnemies();
+                }
+//                Activate fireball
+                if (fireBall) {
+
                 }
 //               If both snakes are dead, the game is over
                 if (redSnakeDead && blueSnakeDead) {

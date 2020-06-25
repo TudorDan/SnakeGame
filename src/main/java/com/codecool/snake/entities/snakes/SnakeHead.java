@@ -101,7 +101,19 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof FireBall) {
-//            TODO
+            Game.fireBall = true;
+            GameInfoBox.createFireBallBox(snake.getName());
+            AtomicInteger spawnedTimer = new AtomicInteger();
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                spawnedTimer.addAndGet(1);
+                GameInfoBox.changeFireBallCounter(String.valueOf(10 - spawnedTimer.intValue()));
+                if (spawnedTimer.intValue() == 10) {
+                    Game.fireBall = false;
+                    GameInfoBox.destroyFireBallBox(snake.getName());
+                }
+            }));
+            timeline.setCycleCount(10);
+            timeline.play();
         }
 
         if (entity instanceof PowerBoom) {
@@ -122,11 +134,8 @@ public class SnakeHead extends GameEntity implements Interactable {
 
         if (entity instanceof SnakeBody) {
             List<GameEntity> bodyList = Globals.getInstance().game.getBlueSnake().getBody().getList();
-            System.out.println(bodyList.indexOf(entity));
             if (bodyList.indexOf(entity) > 10) {
-                System.out.println("Self Collide!");
-                Globals.getInstance().stopGame();
-//                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getBlueSnake().getBody().getList().size() + 1);
+                snake.destroySnake();
             }
 
 
