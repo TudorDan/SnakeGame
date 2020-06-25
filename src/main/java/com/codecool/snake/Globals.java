@@ -104,9 +104,9 @@ public class Globals {
 
         VBox dialogVbox = new VBox(20);
         if (winner != "TIE") {
-            dialogVbox.getChildren().add(new Text(winner + " HAS WON THE GAME!"));
+            dialogVbox.getChildren().add(new Text(winner + " Dragon has won the game!"));
         } else {
-            dialogVbox.getChildren().add(new Text("IT'S A TIE"));
+            dialogVbox.getChildren().add(new Text("It's a tie!"));
         }
 
 
