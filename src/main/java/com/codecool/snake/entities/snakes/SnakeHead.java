@@ -120,13 +120,9 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof SnakeBody) {
-            List<GameEntity> bodyList = Globals.getInstance().game.getSnake().getBody().getList();
-            System.out.println(bodyList.indexOf(entity));
+            List<GameEntity> bodyList = snake.getBody().getList();
             if (bodyList.indexOf(entity) > 10) {
-                System.out.println("Self Collide!");
-                Globals.getInstance().stopGame();
-                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getSnake().getBody().getList().size
-                        () + 1);
+                snake.destroySnake();
             }
 
 

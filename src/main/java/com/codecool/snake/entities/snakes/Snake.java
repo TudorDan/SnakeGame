@@ -115,14 +115,25 @@ public class Snake implements Animatable {
     }
 
 
-    private void checkForGameOverConditions() {
+    public void checkForGameOverConditions() {
         if (head.isOutOfBounds() || healthBar.getHealth() <= 0) {
-            Globals.getInstance().game.getChildren().remove(this.getHead());
-            List<GameEntity> bodyList = getBody().getList();
-            for (GameEntity bodyPart : bodyList) {
-                Globals.getInstance().game.getChildren().remove(bodyPart);
-            }
-            Globals.getInstance().game.changeNumSnakes(-1);
+            destroySnake();
+        }
+    }
+
+    public void destroySnake() {
+        Globals.getInstance().game.getChildren().remove(this.getHead());
+        List<GameEntity> bodyList = getBody().getList();
+        for (GameEntity bodyPart : bodyList) {
+            Globals.getInstance().game.getChildren().remove(bodyPart);
+        }
+
+        switch (this.name) {
+            case "Blue":
+                Globals.getInstance().game.redSnakeDead = true;
+                break;
+            case "Red":
+                Globals.getInstance().game.blueSnakeDead = true;
         }
     }
 

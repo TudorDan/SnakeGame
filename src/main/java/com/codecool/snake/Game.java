@@ -37,7 +37,8 @@ public class Game extends Pane {
     private static final int fireBallSpawnDuration = 8;
     private static final int powerBoomSpawnDuration = 5;
 
-    public static int numSnakes = 2;
+    public static boolean redSnakeDead = false;
+    public static boolean blueSnakeDead = false;
 
     public Game() {
         Globals.getInstance().game = this;
@@ -79,7 +80,8 @@ public class Game extends Pane {
         redSnake.changeScore(0);
         redSnake.setHealth(100);
 
-        numSnakes = 2;
+        redSnakeDead = false;
+        blueSnakeDead = false;
 
         //delete everything
         getChildren().removeIf(child -> child instanceof GameEntity);
@@ -153,9 +155,10 @@ public class Game extends Pane {
                 if (powerBoom) {
                     clearEnemies();
                 }
-
-                if (numSnakes <= 0) {
+//               If both snakes are dead, the game is over
+                if (redSnakeDead && blueSnakeDead) {
                     Globals.getInstance().stopGame();
+                    timeline.stop();
                     String winner = showWinner();
                     Globals.getInstance().showGameWonDialog(winner);
                 }
@@ -174,10 +177,6 @@ public class Game extends Pane {
         } else {
             return "TIE";
         }
-    }
-
-    public void changeNumSnakes(int diff) {
-        numSnakes += diff;
     }
 
     public void setTableBackground(Image tableBackground) {
