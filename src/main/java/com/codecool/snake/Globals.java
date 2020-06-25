@@ -71,7 +71,6 @@ public class Globals {
         resources.addImage("Health20Red", new Image("health20.png"));
         resources.addImage("Health10Red", new Image("health10.png"));
         resources.addImage("Health0Red", new Image("health0.png"));
-
 //        HEALTH BAR BLUE
         resources.addImage("Health100Blue", new Image("hfull.png"));
         resources.addImage("Health90Blue", new Image("h9.png"));
@@ -98,14 +97,18 @@ public class Globals {
         gameLoop.stop();
     }
 
-    public void showGameWonDialog(int snakeLength) {
+    public void showGameWonDialog(String winner) {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(stage);
 
         VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("GAME OVER!"));
-        dialogVbox.getChildren().add(new Text("(snake length is " + snakeLength + ")"));
+        if (winner != "TIE") {
+            dialogVbox.getChildren().add(new Text(winner + " HAS WON THE GAME!"));
+        } else {
+            dialogVbox.getChildren().add(new Text("IT'S A TIE"));
+        }
+
 
         Button restartButton = new Button("PLAY AGAIN");
         restartButton.setOnAction(event -> {

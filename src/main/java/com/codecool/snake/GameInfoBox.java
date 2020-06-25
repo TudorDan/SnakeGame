@@ -72,7 +72,7 @@ public class GameInfoBox {
         titleSnake2.setText(newTitle);
     }
 
-    public static void createSpeedPotionBox() {
+    public static void createSpeedPotionBox(String snakeName) {
         speedPotionBox = new HBox();
         speedPotionBox.setPadding(new Insets(10));
         speedPotionBox.setSpacing(8);
@@ -87,14 +87,28 @@ public class GameInfoBox {
         speedPotionBox.getChildren().add(imgView);
         speedPotionBox.getChildren().add(speedPotionCounter);
 
-        snake1InfoBox.getChildren().add(speedPotionBox);
+        switch (snakeName) {
+            case "Blue":
+                snake1InfoBox.getChildren().add(speedPotionBox);
+                break;
+            case "Red":
+                snake2InfoBox.getChildren().add(speedPotionBox);
+                break;
+        }
     }
 
     public static void changeSpeedPotionCounter(String counter) {
         speedPotionCounter.setText(counter);
     }
 
-    public static void destroySpeedPotionBox() {
-        snake1InfoBox.getChildren().remove(speedPotionBox);
+    public static void destroySpeedPotionBox(String snakeName) {
+        switch (snakeName) {
+            case "Blue":
+                snake1InfoBox.getChildren().remove(speedPotionBox);
+                break;
+            case "Red":
+                snake2InfoBox.getChildren().remove(speedPotionBox);
+                break;
+        }
     }
 }

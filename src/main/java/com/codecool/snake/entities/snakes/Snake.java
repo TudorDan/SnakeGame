@@ -11,6 +11,8 @@ import com.codecool.snake.GameInfoBox;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
+import java.util.List;
+
 
 public class Snake implements Animatable {
     private int speed;
@@ -118,12 +120,12 @@ public class Snake implements Animatable {
 
     private void checkForGameOverConditions() {
         if (head.isOutOfBounds() || healthBar.getHealth() <= 0) {
-            System.out.println("outOfBounds: " + head.isOutOfBounds());
-            System.out.println("health: " + healthBar.getHealth());
-
-            System.out.println("Game Over");
-            Globals.getInstance().stopGame();
-            Globals.getInstance().showGameWonDialog(body.getList().size() + 1);
+            Globals.getInstance().game.getChildren().remove(this.getHead());
+            List<GameEntity> bodyList = getBody().getList();
+            for (GameEntity bodyPart : bodyList) {
+                Globals.getInstance().game.getChildren().remove(bodyPart);
+            }
+            Globals.getInstance().game.changeNumSnakes(-1);
         }
     }
 
