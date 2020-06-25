@@ -108,6 +108,8 @@ public class SnakeHead extends GameEntity implements Interactable {
 
         if (entity instanceof PowerBoom) {
             Game.powerBoom = true;
+//            Add 500 points to snake score
+            snake.changeScore(500);
 //            The effect lasts for 3 seconds
             AtomicInteger spawnedTimer = new AtomicInteger();
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
