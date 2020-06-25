@@ -8,6 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.entities.snakes.Shooting;
 import javafx.geometry.Point2D;
 
 import java.util.Random;
@@ -19,9 +20,10 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
     private double direction;
     private final int speed;
     private int temp;
+    private int hitCount = 4;
 
     public ThirdEnemy() {
-        super(-20);
+        super(-10);
 
         setImage(Globals.getInstance().getImage("Boss"));
         setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 20));
@@ -38,7 +40,7 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
         direction = Globals.WINDOW_HEIGHT;
         setRotate(direction);
 
-        speed = 3;
+        speed = 2;
         temp = 1;
     }
 
@@ -62,15 +64,22 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if (entity instanceof SnakeHead) {
+        if (entity instanceof SnakeHead || entity instanceof Shooting) {
             System.out.println("damage 30");
-            destroy();
-        }
-        if (entity instanceof SnakeBody) {
-            destroy();
+            if (hitCount == 0) {
+                if (entity instanceof SnakeHead || entity instanceof Shooting) {
+                    System.out.println(getMessage());
+
+                    destroy();
+                }
+            } else {
+                hitCount--;
+            }
+            if (entity instanceof SnakeBody) {
+                destroy();
+            }
         }
     }
-
     @Override
     public String getMessage() {
         return (getDamage() + " damage");
