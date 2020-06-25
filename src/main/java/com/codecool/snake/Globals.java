@@ -59,6 +59,7 @@ public class Globals {
         resources.addImage("PowerBoom", new Image("power-boom.png"));
         resources.addImage("FireBall", new Image("fireball.png"));
         resources.addImage("Life", new Image("heart.png"));
+        resources.addImage("IceBall", new Image("iceball.png"));
 //        HEALTH BAR RED
         resources.addImage("Health100Red", new Image("healthfull.png"));
         resources.addImage("Health90Red", new Image("health90.png"));

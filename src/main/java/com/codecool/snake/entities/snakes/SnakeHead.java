@@ -126,7 +126,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             if (bodyList.indexOf(entity) > 10) {
                 System.out.println("Self Collide!");
                 Globals.getInstance().stopGame();
-                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getBlueSnake().getBody().getList().size() + 1);
+//                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getBlueSnake().getBody().getList().size() + 1);
             }
 
 

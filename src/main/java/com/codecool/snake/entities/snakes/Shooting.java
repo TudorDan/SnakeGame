@@ -12,16 +12,24 @@ import javafx.geometry.Point2D;
 public class Shooting extends GameEntity implements Interactable, Animatable {
 
     private Point2D heading;
-    private static final int SPEED = 6;
+    private static final int SPEED = 5;
     private Snake snake;
 
     Shooting(Snake snake) {
         this.snake = snake;
-        setImage(Globals.getInstance().getImage("FireBall"));
-        heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + SPEED);
-        setX(snake.getHead().getPosition().getX());
-        setY(snake.getHead().getPosition().getY());
+        if (snake.getName().equals("Red")) {
+            setImage(Globals.getInstance().getImage("FireBall"));
+            heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + SPEED);
+            setX(snake.getHead().getPosition().getX());
+            setY(snake.getHead().getPosition().getY());
+        }
 
+        else {
+            setImage(Globals.getInstance().getImage("IceBall"));
+            heading = Utils.directionToVector(snake.getHead().getRotate(), snake.getSpeed() + SPEED);
+            setX(snake.getHead().getPosition().getX());
+            setY(snake.getHead().getPosition().getY());
+        }
     }
 
     public Snake getSnake() {

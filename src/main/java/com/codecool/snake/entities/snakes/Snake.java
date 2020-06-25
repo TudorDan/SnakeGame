@@ -16,7 +16,8 @@ import java.util.List;
 
 public class Snake implements Animatable {
     private int speed;
-    private int shootingInterval;
+    private int blueShoot = 0;
+    private int redShoot = 0;
     private int health = 100;
     private int score;
     private HealthBar healthBar;
@@ -83,19 +84,31 @@ public class Snake implements Animatable {
 
         switch (this.name) {
             case "Blue":
+                if (blueShoot > 0) {
+                    blueShoot --;
+                }
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.UP)) {
                     System.out.println("TRAGE BAAAA");
-                    new Shooting(this);
+                    if (blueShoot == 0) {
+                        new Shooting(this);
+                        blueShoot += 10;
+                    }
                 }
                 break;
             case "Red":
+                if (redShoot > 0) {
+                    redShoot --;
+                }
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.W)) {
                     System.out.println("TRAGE BAAAA");
-                    new Shooting(this);
+                    if (redShoot == 0) {
+                        new Shooting(this);
+                        redShoot += 10;
+                    }
                 }
                 break;
         }
