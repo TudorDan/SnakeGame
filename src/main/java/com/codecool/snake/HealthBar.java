@@ -28,6 +28,7 @@ public class HealthBar extends GameEntity {
 
     public void changeHealth(int health) {
         this.health += health;
+        changeHealthBar();
     }
 
     public void restoreHealth() {

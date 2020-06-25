@@ -143,4 +143,9 @@ public class Snake implements Animatable {
     public HealthBar getHealthBar() {
         return healthBar;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+        healthBar.changeHealth(health);
+    }
 }

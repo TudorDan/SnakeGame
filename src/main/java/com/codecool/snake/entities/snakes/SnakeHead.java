@@ -90,7 +90,7 @@ public class SnakeHead extends GameEntity implements Interactable {
                     GameInfoBox.destroySpeedPotionBox();
                 }
             }));
-            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.setCycleCount(10);
             timeline.play();
 
         }
@@ -117,7 +117,7 @@ public class SnakeHead extends GameEntity implements Interactable {
                     Game.powerBoom = false;
                 }
             }));
-            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.setCycleCount(3);
             timeline.play();
         }
     }

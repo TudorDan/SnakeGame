@@ -72,6 +72,7 @@ public class Game extends Pane {
         Globals.getInstance().stopGame();
         timeline.stop();
         snake.changeScore(0);
+        snake.setHealth(100);
 
         //delete everything
         getChildren().removeIf(child -> child instanceof GameEntity);
@@ -160,6 +161,7 @@ public class Game extends Pane {
     public Snake getSnake() {
         return snake;
     }
+
     public void clearEnemies() {
         getChildren().removeIf(child -> child instanceof Enemy);
 

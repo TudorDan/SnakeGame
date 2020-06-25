@@ -55,7 +55,7 @@ public abstract class GameEntity extends ImageView {
                 this.destroy();
             }
         }));
-        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setCycleCount(spawnDuration);
         timeline.play();
     }
 }
