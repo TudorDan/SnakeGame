@@ -22,12 +22,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class Game extends Pane {
-    private Snake snake = null;
+    private Snake blueSnake = null;
+    private Snake redSnake = null;
     private GameTimer gameTimer = new GameTimer();
+    private GameLoop gameLoop = new GameLoop(blueSnake, redSnake);
 
-    private GameLoop gameLoop = new GameLoop(snake);
-
-    //    Shady type of integer idk what this is but normal int won't work so who cares
     AtomicInteger timer = new AtomicInteger();
     Timeline timeline;
     public static boolean powerBoom = false;
@@ -47,12 +46,12 @@ public class Game extends Pane {
     }
 
     public void init() {
-        spawnSnake();
+        spawnSnakes();
         spawnEnemies(2);
         spawnFood();
         setupSpawningTimer();
 
-        GameLoop gameLoop = new GameLoop(snake);
+        GameLoop gameLoop = new GameLoop(blueSnake, redSnake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -72,8 +71,11 @@ public class Game extends Pane {
         Globals.getInstance().stopGame();
         timeline.stop();
         timer.getAndSet(0);
-        snake.changeScore(0);
-        snake.setHealth(100);
+
+        blueSnake.changeScore(0);
+        blueSnake.setHealth(100);
+        redSnake.changeScore(0);
+        redSnake.setHealth(100);
 
         //delete everything
         getChildren().removeIf(child -> child instanceof GameEntity);
@@ -82,8 +84,9 @@ public class Game extends Pane {
         start();
     }
 
-    private void spawnSnake() {
-        snake = new Snake(new Point2D(500, 500));
+    private void spawnSnakes() {
+        blueSnake = new Snake(new Point2D(400, 500), "Blue");
+        redSnake = new Snake(new Point2D(600, 500), "Red");
     }
 
     private void spawnEnemies(int numberOfEnemies) {
@@ -159,9 +162,11 @@ public class Game extends Pane {
     }
 
 
-    public Snake getSnake() {
-        return snake;
+    public Snake getBlueSnake() {
+        return blueSnake;
     }
+
+    public Snake getRedSnake() {return redSnake;}
 
     public void clearEnemies() {
         getChildren().removeIf(child -> child instanceof Enemy);

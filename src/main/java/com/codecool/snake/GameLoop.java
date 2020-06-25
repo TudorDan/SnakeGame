@@ -13,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameLoop {
-    private Snake snake;
+    private Snake blueSnake;
+    private Snake redSnake;
     private Enemy enemy;
     private boolean running = false;
 
-    public GameLoop(Snake snake) {
-        this.snake = snake;
+    public GameLoop(Snake blueSnake, Snake redSnake) {
+        this.blueSnake = blueSnake;
+        this.redSnake = redSnake;
     }
 
     public boolean isRunning() {
@@ -35,7 +37,8 @@ public class GameLoop {
 
     public void step() {
         if (running) {
-            snake.step();
+            blueSnake.step();
+            redSnake.step();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();

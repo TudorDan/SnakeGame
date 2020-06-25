@@ -40,13 +40,18 @@ public class Globals {
 
     public void setupResources() {
         resources = new Resources();
-//        SNAKE
-        resources.addImage("SnakeHead", new Image("snake_head_ice.png"));
-        resources.addImage("SnakeBody", new Image("snake_body_ice.png"));
+//        SNAKES
+        resources.addImage("SnakeHeadBlue", new Image("snake_head_ice.png"));
+        resources.addImage("SnakeBodyBlue", new Image("snake_body_ice.png"));
+
+        resources.addImage("SnakeHeadRed", new Image("dragon-head.png"));
+        resources.addImage("SnakeBodyRed", new Image("dragon-body.png"));
 //        ENEMIES
         resources.addImage("SimpleEnemy", new Image("simple_enemy.png"));
         resources.addImage("Bird", new Image("greenBird.png"));
         resources.addImage("Spaceship", new Image("spaceship3.png"));
+        resources.addImage("Bird", new Image("greenBird.png"));
+        resources.addImage("Boss", new Image("boss.png"));
 //        POWER-UPS
         resources.addImage("Food", new Image("sheep.png"));
         resources.addImage("Potion", new Image("potion.png"));
@@ -55,11 +60,6 @@ public class Globals {
         resources.addImage("FireBall", new Image("ball-of-fire.png"));
         resources.addImage("Life", new Image("heart.png"));
 //        HEALTH BAR
-
-
-        resources.addImage("Bird", new Image("greenBird.png"));
-        resources.addImage("Boss", new Image("boss.png"));
-
         resources.addImage("Health100", new Image("healthfull.png"));
         resources.addImage("Health90", new Image("health90.png"));
         resources.addImage("Health80", new Image("health80.png"));

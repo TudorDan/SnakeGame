@@ -30,8 +30,9 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
         setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
 
         // ensure enemy is not spawn on snake
-        Snake snake = Globals.getInstance().game.getSnake();
-        while(snake.isTouchedBy(this)) {
+        Snake blueSnake = Globals.getInstance().game.getBlueSnake();
+        Snake redSnake = Globals.getInstance().game.getRedSnake();
+        while(blueSnake.isTouchedBy(this) && redSnake.isTouchedBy(this)) {
             setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH - 20));
             setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT - 20));
         }

@@ -14,10 +14,11 @@ import java.util.Queue;
 public class SnakeBody extends GameEntity implements Interactable {
     private Queue<Point2D> history = new LinkedList<>();
     private static final int historySize = 10;
-    private Snake snake = Globals.getInstance().game.getSnake();
+    private Snake snake;
 
-    public SnakeBody(Point2D coord) {
-        setImage(Globals.getInstance().getImage("SnakeBody"));
+    public SnakeBody(Point2D coord, Snake snake) {
+        this.snake = snake;
+        setImage(Globals.getInstance().getImage("SnakeBody" + this.snake.getName()));
         setX(coord.getX());
         setY(coord.getY());
 
@@ -37,14 +38,7 @@ public class SnakeBody extends GameEntity implements Interactable {
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof Enemy){
-//            Decrease snake health with a value equal to the damage produced by the enemy
-//            snake.changeHealth(((Enemy) entity).getDamage());
-//            snake.getHealthBar().changeHealthBar();
             System.out.println("BODY contact");
-//            Spawn life if health is below 30
-//            if (snake.getHealth() < 30) {
-//                new Life(10);
-//            }
         }
     }
 

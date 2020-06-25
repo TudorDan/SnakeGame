@@ -8,10 +8,11 @@ public class HealthBar extends GameEntity {
     private int health = 100;
     private Snake snake;
 
-    public HealthBar() {
+    public HealthBar(Snake snake) {
         setImage(Globals.getInstance().getImage("Health100"));
         setX(10);
         setY(30);
+        this.snake = snake;
     }
 
     public void changeHealthBar() {

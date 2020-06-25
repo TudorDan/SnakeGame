@@ -1,19 +1,11 @@
 package com.codecool.snake;
 
-import com.codecool.snake.GameInfoBox;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -28,7 +20,7 @@ public class Main extends Application {
         Scene mainScene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
         game.setTableBackground(new Image("/background.png"));
 
-        primaryStage.setTitle("Snake Game");
+        primaryStage.setTitle("Dragon Snake");
         primaryStage.setScene(mainScene);
         primaryStage.show();
         Globals.getInstance().stage = primaryStage;

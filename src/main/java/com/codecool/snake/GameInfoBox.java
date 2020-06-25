@@ -68,7 +68,7 @@ public class GameInfoBox {
         titleSnake1.setText(newTitle);
     }
 
-    public void changeTitleSnake2(String newTitle) {
+    public static void changeTitleSnake2(String newTitle) {
         titleSnake2.setText(newTitle);
     }
 

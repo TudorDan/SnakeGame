@@ -5,12 +5,9 @@ import com.codecool.snake.GameInfoBox;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.Utils;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import com.codecool.snake.entities.powerups.*;
-import com.codecool.snake.GameInfoBox;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
@@ -25,7 +22,7 @@ public class SnakeHead extends GameEntity implements Interactable {
 
     public SnakeHead(Snake snake, Point2D position) {
         this.snake = snake;
-        setImage(Globals.getInstance().getImage("SnakeHead"));
+        setImage(Globals.getInstance().getImage("SnakeHead" + this.snake.getName()));
         setPosition(position);
     }
 

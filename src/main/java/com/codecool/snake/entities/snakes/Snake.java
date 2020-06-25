@@ -21,16 +21,23 @@ public class Snake implements Animatable {
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
 
+    private String name;
 
-    public Snake(Point2D position) {
+
+    public Snake(Point2D position, String name) {
+        this.name = name;
         head = new SnakeHead(this, position);
         body = new DelayedModificationList<>();
-        healthBar = new HealthBar();
+        healthBar = new HealthBar(this);
 
         addPart(4);
 
         this.score = 0;
         this.speed = 2;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public boolean isTouchedBy(GameEntity gameEntity) {
@@ -67,8 +74,17 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
-        if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+        switch (this.name) {
+            case "Blue":
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+                break;
+            case "Red":
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+                break;
+        }
+
         return turnDir;
     }
 
@@ -77,7 +93,7 @@ public class Snake implements Animatable {
         Point2D position = parent.getPosition();
 
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newBodyPart = new SnakeBody(position);
+            SnakeBody newBodyPart = new SnakeBody(position, this);
             body.add(newBodyPart);
         }
         Globals.getInstance().display.updateSnakeHeadDrawPosition(head);
@@ -89,7 +105,14 @@ public class Snake implements Animatable {
 
     public void changeScore(int diff) {
         score += diff;
-        GameInfoBox.changeTitleSnake1("BLUE DRAGON: " + this.getScore());
+        switch (this.name) {
+            case "Blue":
+                GameInfoBox.changeTitleSnake1("BLUE DRAGON: " + this.getScore());
+                break;
+            case "Red":
+                GameInfoBox.changeTitleSnake2("RED DRAGON: " + this.getScore());
+                break;
+        }
     }
 
 
