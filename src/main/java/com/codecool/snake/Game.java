@@ -71,6 +71,7 @@ public class Game extends Pane {
     public void restart() {
         Globals.getInstance().stopGame();
         timeline.stop();
+        timer.getAndSet(0);
         snake.changeScore(0);
         snake.setHealth(100);
 
