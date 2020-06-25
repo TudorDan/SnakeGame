@@ -5,6 +5,9 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
+import com.codecool.snake.HealthBar;
+import com.sun.javafx.geom.Vec2d;
+
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
@@ -13,9 +16,11 @@ import java.util.List;
 
 public class Snake implements Animatable {
     private int speed;
+    private int shootingInterval;
     private int health = 100;
     private int score;
     private HealthBar healthBar;
+    private Shooting shooting;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -34,6 +39,7 @@ public class Snake implements Animatable {
         this.score = 0;
         this.speed = 2;
     }
+
 
     public String getName() {
         return this.name;
@@ -57,6 +63,7 @@ public class Snake implements Animatable {
         return head;
     }
 
+
     public DelayedModificationList<GameEntity> getBody() {
         return body;
     }
@@ -73,20 +80,29 @@ public class Snake implements Animatable {
 
     private SnakeControl getUserInput() {
         SnakeControl turnDir = SnakeControl.INVALID;
+
         switch (this.name) {
             case "Blue":
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.LEFT)) turnDir = SnakeControl.TURN_LEFT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.RIGHT)) turnDir = SnakeControl.TURN_RIGHT;
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.UP)) {
+                    System.out.println("TRAGE BAAAA");
+                    new Shooting(this);
+                }
                 break;
             case "Red":
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.A)) turnDir = SnakeControl.TURN_LEFT;
                 if (InputHandler.getInstance().isKeyPressed(KeyCode.D)) turnDir = SnakeControl.TURN_RIGHT;
+                if (InputHandler.getInstance().isKeyPressed(KeyCode.W)) {
+                    System.out.println("TRAGE BAAAA");
+                    new Shooting(this);
+                }
                 break;
         }
 
         return turnDir;
-    }
 
+    }
     public void addPart(int numParts) {
         GameEntity parent = getLastPart();
         Point2D position = parent.getPosition();
@@ -166,8 +182,13 @@ public class Snake implements Animatable {
         return healthBar;
     }
 
+
     public void setHealth(int health) {
         this.health = health;
         healthBar.changeHealth(health);
     }
+
+
+
+
 }

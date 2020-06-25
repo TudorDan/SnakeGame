@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
     private Snake snake;
+    private Shooting shooting;
 
     public SnakeHead(Snake snake, Point2D position) {
         this.snake = snake;
@@ -120,13 +121,12 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof SnakeBody) {
-            List<GameEntity> bodyList = Globals.getInstance().game.getSnake().getBody().getList();
+            List<GameEntity> bodyList = Globals.getInstance().game.getBlueSnake().getBody().getList();
             System.out.println(bodyList.indexOf(entity));
             if (bodyList.indexOf(entity) > 10) {
                 System.out.println("Self Collide!");
                 Globals.getInstance().stopGame();
-                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getSnake().getBody().getList().size
-                        () + 1);
+                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getBlueSnake().getBody().getList().size() + 1);
             }
 
 

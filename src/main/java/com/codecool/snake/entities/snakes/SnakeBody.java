@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.Enemy;
 import javafx.geometry.Point2D;
 
+
 import java.util.LinkedList;
 import java.util.Queue;
 

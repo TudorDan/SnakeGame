@@ -8,7 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.entities.snakes.SnakeBody;
 import com.codecool.snake.entities.snakes.SnakeHead;
-
+import com.codecool.snake.entities.snakes.Shooting;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -55,9 +55,14 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
+        if(entity instanceof SnakeHead || entity instanceof Shooting){
             System.out.println("damage 10");
-            destroy();
+            if (entity instanceof SnakeHead || entity instanceof Shooting) {
+                System.out.println(getMessage());
+
+                destroy();
+            }
+
         }
         if(entity instanceof SnakeBody){
             System.out.println("enemy contact Snake Body!");

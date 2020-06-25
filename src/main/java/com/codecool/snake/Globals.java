@@ -57,7 +57,7 @@ public class Globals {
         resources.addImage("Potion", new Image("potion.png"));
         resources.addImage("GoldChest", new Image("gold-chest.png"));
         resources.addImage("PowerBoom", new Image("power-boom.png"));
-        resources.addImage("FireBall", new Image("ball-of-fire.png"));
+        resources.addImage("FireBall", new Image("fireball.png"));
         resources.addImage("Life", new Image("heart.png"));
 //        HEALTH BAR RED
         resources.addImage("Health100Red", new Image("healthfull.png"));
@@ -114,6 +114,7 @@ public class Globals {
         restartButton.setOnAction(event -> {
             dialog.close();
             game.restart();
+
         });
 
         Button closeGameButton = new Button("EXIT");
@@ -131,6 +132,7 @@ public class Globals {
         Scene dialogScene = new Scene(layout, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();
+
     }
 
     private Globals() {
