@@ -16,6 +16,7 @@ import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -120,6 +121,20 @@ public class SnakeHead extends GameEntity implements Interactable {
             timeline.setCycleCount(3);
             timeline.play();
         }
+
+        if (entity instanceof SnakeBody) {
+            List<GameEntity> bodyList = Globals.getInstance().game.getSnake().getBody().getList();
+            System.out.println(bodyList.indexOf(entity));
+            if (bodyList.indexOf(entity) > 10) {
+                System.out.println("Self Collide!");
+                Globals.getInstance().stopGame();
+                Globals.getInstance().showGameWonDialog(Globals.getInstance().game.getSnake().getBody().getList().size
+                        () + 1);
+            }
+
+
+        }
+
     }
 
     @Override

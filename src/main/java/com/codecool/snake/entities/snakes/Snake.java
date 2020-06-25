@@ -1,13 +1,10 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.DelayedModificationList;
-import com.codecool.snake.Globals;
+import com.codecool.snake.*;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
-import com.codecool.snake.HealthBar;
 
-import com.codecool.snake.GameInfoBox;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 
