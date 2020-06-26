@@ -28,6 +28,8 @@ public class SnakeBody extends GameEntity implements Interactable {
         }
     }
 
+    public Snake getSnake() {return this.snake;}
+
     @Override
     public void setPosition(Point2D pos) {
         Point2D currentPos = history.poll(); // remove the oldest item from the history

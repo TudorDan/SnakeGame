@@ -135,8 +135,12 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
 
         if (entity instanceof SnakeBody) {
-            List<GameEntity> bodyList = Globals.getInstance().game.getBlueSnake().getBody().getList();
-            if (bodyList.indexOf(entity) > 10) {
+            if (((SnakeBody) entity).getSnake().getName().equals(snake.getName())) {
+                List<GameEntity> bodyList = snake.getBody().getList();
+                if (bodyList.indexOf(entity) > 10) {
+                    snake.destroySnake();
+                }
+            } else {
                 snake.destroySnake();
             }
 
