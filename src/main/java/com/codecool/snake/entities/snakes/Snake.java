@@ -170,6 +170,8 @@ public class Snake implements Animatable {
             case "Red":
                 Globals.getInstance().game.blueSnakeDead = true;
         }
+
+        setHealth(0);
     }
 
     private void updateSnakeBodyHistory() {
@@ -215,7 +217,7 @@ public class Snake implements Animatable {
 
     public void setHealth(int health) {
         this.health = health;
-        healthBar.changeHealth(health);
+        healthBar.setHealth(health);
     }
 
 

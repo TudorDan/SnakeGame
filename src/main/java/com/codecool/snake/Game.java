@@ -131,7 +131,7 @@ public class Game extends Pane {
                     new SpeedPotion(speedPotionSpawnDuration);
                 }
                 // Spawn one PowerBoom per 40 seconds
-                if (timer.intValue() % 40 == 0) {
+                if (timer.intValue() % 40 == 0 && !powerBoom) {
                     new PowerBoom(powerBoomSpawnDuration);
                 }
                 // Spawn one GoldChest per 35 seconds
@@ -197,4 +197,5 @@ public class Game extends Pane {
         getChildren().removeIf(child -> child instanceof Enemy);
 
     }
+
 }
