@@ -156,10 +156,6 @@ public class Game extends Pane {
                 if (powerBoom) {
                     clearEnemies();
                 }
-//                Activate fireball
-                if (fireBall) {
-
-                }
 //               If both snakes are dead, the game is over
                 if (redSnakeDead && blueSnakeDead) {
                     Globals.getInstance().stopGame();

@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.enemies;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -57,21 +58,22 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof SnakeHead || entity instanceof Shooting){
-            System.out.println("damage 10");
-            if (hitCount == 0) {
+            if (hitCount <= 0) {
                 if (entity instanceof SnakeHead || entity instanceof Shooting) {
-                    System.out.println(getMessage());
-
                     destroy();
+                    if (entity instanceof Shooting) {
+                        ((Shooting) entity).getSnake().changeScore(20);
+                    }
                 }
             }
             else {
-                hitCount --;
+                if (!Game.fireBall) {
+                    hitCount --;
+                } else {
+                    hitCount -= 2;
+                }
+
             }
-        }
-        if(entity instanceof SnakeBody){
-            System.out.println("enemy contact Snake Body!");
-            destroy();
         }
     }
 
