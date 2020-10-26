@@ -1,26 +1,31 @@
-#+OPTIONS: toc:nil num:nil ^:nil
-#+TITLE: Snake game
+# Snake game
 
 This is a snake game with full 360 degree rotation.
 
-* Development
+## Development
 
-** Inside IntelliJ Idea
+### Inside IntelliJ Idea
 
    Open the project as a Maven project. (by opening the =pom.xml=)
 
    Run it from the maven sidebar by running the =javafx:run= target
 
-** From command line
+### From command line
 
    Build it with
 
-   #+BEGIN_SRC sh
-     mvn javafx:compile
-   #+END_SRC
+   ``` 
+   mvn javafx:compile
+```
+    
 
    Run in with
 
-   #+BEGIN_SRC sh
-     mvn javafx:run
-   #+END_SRC
+   ```
+mvn javafx:run
+```
+    
+
+** The implementation
+
+![implementaion](src/main/resources/screenshotSnake.png)
