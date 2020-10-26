@@ -26,6 +26,6 @@ mvn javafx:run
 ```
     
 
-** The implementation
+### The implementation
 
 ![implementaion](src/main/resources/screenshotSnake.png)
