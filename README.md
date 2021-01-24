@@ -10,9 +10,11 @@ make payments.
 
 ### Inside IntelliJ Idea
 
-   Open the project as a Maven project. (by opening the =pom.xml=)
+   Open the project as a Maven project. (by opening the pom.xml)
 
-   Run it from the maven sidebar by running the =javafx:run= target
+   Run it from the maven sidebar by running 
+   
+    javafx:run <target>
 
 ### From command line
 
