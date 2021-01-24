@@ -1,6 +1,10 @@
 # Snake game
 
-This is a snake game with full 360 degree rotation.
+## Description
+
+Online web-application written in Java, using Maven, Java Servlets, PostgreSQL and JUnit,
+where users can browse products, add them into a shopping cart, checkout items and
+make payments.
 
 ## Development
 
