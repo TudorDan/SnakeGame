@@ -2,9 +2,8 @@
 
 ## Description
 
-Online web-application written in Java, using Maven, Java Servlets, PostgreSQL and JUnit,
-where users can browse products, add them into a shopping cart, checkout items and
-make payments.
+A team project for the classic Snake game written in Java using JavaFX as a GUI and
+Maven as build tool.
 
 ## Development
 
